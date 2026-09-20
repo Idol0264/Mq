@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>MQ — Money Making Menu | GT Softwares</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="ambient ambient-c"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <button class="mq-brand" id="homeBtn" aria-label="MQ Home">
+          <span class="mq-mark">MQ</span>
+          <span class="mq-name">Money Making Menu</span>
+        </button>
+      </div>
+      <nav class="top-actions" aria-label="MQ actions">
+        <button class="top-action" data-action="discover">Discover</button>
+        <button class="top-action" data-action="support">Customer Service</button>
+        <button class="top-action telegram" data-action="telegram">Telegram</button>
+      </nav>
+    </header>
+
+    <main class="content" id="homeView">
+      <section class="welcome-card">
+        <p class="eyebrow">GT SOFTwares</p>
+        <h1 id="welcomeTitle">Welcome to MQ</h1>
+        <p>Build your own working menu by adding useful platforms from the GTS Gallery.</p>
+      </section>
+
+      <section class="category-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GTS GALLERY</p>
+            <h2>Choose a category</h2>
+          </div>
+          <button class="small-btn" id="galleryBtn">See More</button>
+        </div>
+
+        <div class="categories" id="categories"></div>
+      </section>
+
+      <section class="added-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR MQ</p>
+            <h2>Added platforms</h2>
+          </div>
+          <span class="counter" id="addedCounter">0 added</span>
+        </div>
+        <div class="added-grid" id="addedGrid"></div>
+      </section>
+    </main>
+
+    <section class="iframe-view" id="iframeView" hidden>
+      <div class="iframe-head">
+        <div>
+          <span class="eyebrow">MQ PLATFORM</span>
+          <h2 id="iframeTitle">Platform</h2>
+        </div>
+        <button class="back-btn" id="backBtn">← Back</button>
+      </div>
+      <div class="iframe-frame">
+        <div class="iframe-loading" id="iframeLoading">Loading platform…</div>
+        <iframe id="platformFrame" title="MQ platform" allow="payment; clipboard-read; clipboard-write" loading="eager"></iframe>
+      </div>
+    </section>
+
+    <footer class="bottom-tab">
+      <div>
+        <strong>GT Softwares</strong>
+        <span>An GTH Product</span>
+      </div>
+      <span class="mq-footer">MQ</span>
+    </footer>
+  </div>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <button class="drawer-close" id="drawerClose">×</button>
+    <p class="eyebrow">MQ MENU</p>
+    <button class="drawer-link" id="drawerHome">Home</button>
+    <button class="drawer-link" data-action="discover">Discover</button>
+    <button class="drawer-link" data-action="support">Customer Service</button>
+    <button class="drawer-link" data-action="telegram">Telegram</button>
+  </aside>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <!-- Required email gate. Replace the Tally embed URL in app.js. -->
+  <div class="gate-backdrop" id="gateBackdrop"></div>
+  <section class="email-gate" id="emailGate" aria-modal="true" role="dialog">
+    <div class="gate-handle"></div>
+    <p class="eyebrow">WELCOME TO MQ</p>
+    <h2>Let GTS know you…</h2>
+    <p class="gate-copy">Enter your email to continue to Money Making Menu.</p>
+
+    <form id="emailForm" class="email-form">
+      <input id="emailInput" type="email" autocomplete="email" placeholder="Enter your email" required>
+      <button type="submit">Continue to MQ</button>
+    </form>
+    <p class="gate-note">Your email form is powered by Tally.</p>
+  </section>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
