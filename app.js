@@ -54,8 +54,7 @@ const gallery = {
     { id: "absa-ghana", name: "Absa Ghana", url: "https://www.absa.com.gh" }
   ],
 
-  /* These remain empty intentionally.
-     Their + buttons lead to Tally submissions. */
+  /* JOBS and PORTFOLIOS use Tally only */
 
   JOBS: [],
 
@@ -305,7 +304,8 @@ function openGallery(category, slotIndex) {
 
 
 /* =====================================================
-   TALLY FORM INSIDE MQ
+   TALLY FORM
+   ONLY JOBS AND PORTFOLIOS USE IFRAME
    ===================================================== */
 
 function openTallyForm(category) {
@@ -354,12 +354,6 @@ function openTallyForm(category) {
     );
 
 
-  /*
-     Tally accepts query parameters.
-     This lets the form know which
-     MQ category the user came from.
-  */
-
   const separator =
     TALLY_FORM_URL.includes("?")
       ? "&"
@@ -379,7 +373,7 @@ function openTallyForm(category) {
 
 
 /* =====================================================
-   SELECT EXTERNAL PLATFORM
+   SELECT PLATFORM
    ===================================================== */
 
 function selectPlatform(platform) {
@@ -516,46 +510,35 @@ document
 
 /* =====================================================
    OPEN EXTERNAL PLATFORM
+   IMPORTANT:
+   EXTERNAL WEBSITES ARE NOT IFRAMED.
+   THEY OPEN DIRECTLY IN A NEW TAB.
    ===================================================== */
 
 function openPlatform(platform) {
 
-  document
-    .getElementById("homeView")
-    .classList.add("hidden");
+  if (!platform || !platform.url) {
 
-
-  document
-    .getElementById("iframeView")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("iframeTitle")
-    .textContent =
-    platform.name;
-
-
-  const frame =
-    document.getElementById(
-      "platformFrame"
+    showToast(
+      "Platform link unavailable."
     );
 
+    return;
 
-  frame.src =
-    platform.url;
+  }
 
 
-  window.scrollTo(
-    0,
-    0
+  window.open(
+    platform.url,
+    "_blank",
+    "noopener,noreferrer"
   );
 
 }
 
 
 /* =====================================================
-   BACK BUTTON
+   CLOSE TALLY VIEW
    ===================================================== */
 
 function closePlatform() {
