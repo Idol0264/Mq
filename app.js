@@ -1,273 +1,832 @@
-/*
-  MQ — Money Making Menu
-  GT Softwares / GTH
+const TALLY_FORM_URL = "https://tally.so/r/REPLACE_WITH_YOUR_TALLY_FORM";
 
-  IMPORTANT:
-  1. Replace TALLY_FORM_URL with your actual Tally form embed URL.
-  2. Replace/add platform URLs in the gallery data below.
-  3. A platform can only render in an iframe if its provider permits framing.
-*/
+const EMAIL_KEY = "mq_user_email";
+const SELECTION_KEY = "mq_platform_selections";
 
-const TALLY_FORM_URL = "https://tally.so/r/REPLACE_WITH_YOUR_FORM";
+const categories = [
+  "BET",
+  "BROKERS",
+  "BANKS",
+  "JOBS",
+  "PORTFOLIOS"
+];
 
-const STORAGE_KEY = "mq_user_email";
-const ADDED_KEY = "mq_added_platforms";
+
+/* =====================================================
+   GTS GALLERY
+   Replace these example URLs with the real platforms
+   ===================================================== */
 
 const gallery = {
+
   BET: [
-    { id:"bet-1", name:"Bet Platform 01", url:"https://example.com" },
-    { id:"bet-2", name:"Bet Platform 02", url:"https://example.com" },
-    { id:"bet-3", name:"Bet Platform 03", url:"https://example.com" },
-    { id:"bet-4", name:"Bet Platform 04", url:"https://example.com" },
-    { id:"bet-5", name:"Bet Platform 05", url:"https://example.com" },
-    { id:"bet-6", name:"Bet Platform 06", url:"https://example.com" },
-    { id:"bet-7", name:"Bet Platform 07", url:"https://example.com" },
-    { id:"bet-8", name:"Bet Platform 08", url:"https://example.com" },
-    { id:"bet-9", name:"Bet Platform 09", url:"https://example.com" }
+    { id: "bet1", name: "Bet Platform 01", url: "https://example.com" },
+    { id: "bet2", name: "Bet Platform 02", url: "https://example.com" },
+    { id: "bet3", name: "Bet Platform 03", url: "https://example.com" },
+    { id: "bet4", name: "Bet Platform 04", url: "https://example.com" },
+    { id: "bet5", name: "Bet Platform 05", url: "https://example.com" },
+    { id: "bet6", name: "Bet Platform 06", url: "https://example.com" },
+    { id: "bet7", name: "Bet Platform 07", url: "https://example.com" },
+    { id: "bet8", name: "Bet Platform 08", url: "https://example.com" },
+    { id: "bet9", name: "Bet Platform 09", url: "https://example.com" }
   ],
+
   BROKERS: [
-    { id:"broker-1", name:"Broker Platform 01", url:"https://example.com" },
-    { id:"broker-2", name:"Broker Platform 02", url:"https://example.com" },
-    { id:"broker-3", name:"Broker Platform 03", url:"https://example.com" },
-    { id:"broker-4", name:"Broker Platform 04", url:"https://example.com" },
-    { id:"broker-5", name:"Broker Platform 05", url:"https://example.com" },
-    { id:"broker-6", name:"Broker Platform 06", url:"https://example.com" },
-    { id:"broker-7", name:"Broker Platform 07", url:"https://example.com" },
-    { id:"broker-8", name:"Broker Platform 08", url:"https://example.com" },
-    { id:"broker-9", name:"Broker Platform 09", url:"https://example.com" }
+    { id: "broker1", name: "Broker Platform 01", url: "https://example.com" },
+    { id: "broker2", name: "Broker Platform 02", url: "https://example.com" },
+    { id: "broker3", name: "Broker Platform 03", url: "https://example.com" },
+    { id: "broker4", name: "Broker Platform 04", url: "https://example.com" },
+    { id: "broker5", name: "Broker Platform 05", url: "https://example.com" },
+    { id: "broker6", name: "Broker Platform 06", url: "https://example.com" },
+    { id: "broker7", name: "Broker Platform 07", url: "https://example.com" },
+    { id: "broker8", name: "Broker Platform 08", url: "https://example.com" },
+    { id: "broker9", name: "Broker Platform 09", url: "https://example.com" }
   ],
+
   BANKS: [
-    { id:"bank-1", name:"Bank Platform 01", url:"https://example.com" },
-    { id:"bank-2", name:"Bank Platform 02", url:"https://example.com" },
-    { id:"bank-3", name:"Bank Platform 03", url:"https://example.com" },
-    { id:"bank-4", name:"Bank Platform 04", url:"https://example.com" },
-    { id:"bank-5", name:"Bank Platform 05", url:"https://example.com" },
-    { id:"bank-6", name:"Bank Platform 06", url:"https://example.com" },
-    { id:"bank-7", name:"Bank Platform 07", url:"https://example.com" },
-    { id:"bank-8", name:"Bank Platform 08", url:"https://example.com" },
-    { id:"bank-9", name:"Bank Platform 09", url:"https://example.com" }
+    { id: "bank1", name: "Bank Platform 01", url: "https://example.com" },
+    { id: "bank2", name: "Bank Platform 02", url: "https://example.com" },
+    { id: "bank3", name: "Bank Platform 03", url: "https://example.com" },
+    { id: "bank4", name: "Bank Platform 04", url: "https://example.com" },
+    { id: "bank5", name: "Bank Platform 05", url: "https://example.com" },
+    { id: "bank6", name: "Bank Platform 06", url: "https://example.com" },
+    { id: "bank7", name: "Bank Platform 07", url: "https://example.com" },
+    { id: "bank8", name: "Bank Platform 08", url: "https://example.com" },
+    { id: "bank9", name: "Bank Platform 09", url: "https://example.com" }
   ],
+
   JOBS: [
-    { id:"job-1", name:"Jobs Platform 01", url:"https://example.com" },
-    { id:"job-2", name:"Jobs Platform 02", url:"https://example.com" },
-    { id:"job-3", name:"Jobs Platform 03", url:"https://example.com" },
-    { id:"job-4", name:"Jobs Platform 04", url:"https://example.com" },
-    { id:"job-5", name:"Jobs Platform 05", url:"https://example.com" },
-    { id:"job-6", name:"Jobs Platform 06", url:"https://example.com" },
-    { id:"job-7", name:"Jobs Platform 07", url:"https://example.com" },
-    { id:"job-8", name:"Jobs Platform 08", url:"https://example.com" },
-    { id:"job-9", name:"Jobs Platform 09", url:"https://example.com" }
+    { id: "job1", name: "Jobs Platform 01", url: "https://example.com" },
+    { id: "job2", name: "Jobs Platform 02", url: "https://example.com" },
+    { id: "job3", name: "Jobs Platform 03", url: "https://example.com" },
+    { id: "job4", name: "Jobs Platform 04", url: "https://example.com" },
+    { id: "job5", name: "Jobs Platform 05", url: "https://example.com" },
+    { id: "job6", name: "Jobs Platform 06", url: "https://example.com" },
+    { id: "job7", name: "Jobs Platform 07", url: "https://example.com" },
+    { id: "job8", name: "Jobs Platform 08", url: "https://example.com" },
+    { id: "job9", name: "Jobs Platform 09", url: "https://example.com" }
   ],
+
   PORTFOLIOS: [
-    { id:"portfolio-1", name:"Portfolio Platform 01", url:"https://example.com" },
-    { id:"portfolio-2", name:"Portfolio Platform 02", url:"https://example.com" },
-    { id:"portfolio-3", name:"Portfolio Platform 03", url:"https://example.com" },
-    { id:"portfolio-4", name:"Portfolio Platform 04", url:"https://example.com" },
-    { id:"portfolio-5", name:"Portfolio Platform 05", url:"https://example.com" },
-    { id:"portfolio-6", name:"Portfolio Platform 06", url:"https://example.com" },
-    { id:"portfolio-7", name:"Portfolio Platform 07", url:"https://example.com" },
-    { id:"portfolio-8", name:"Portfolio Platform 08", url:"https://example.com" },
-    { id:"portfolio-9", name:"Portfolio Platform 09", url:"https://example.com" }
+    { id: "portfolio1", name: "Portfolio Platform 01", url: "https://example.com" },
+    { id: "portfolio2", name: "Portfolio Platform 02", url: "https://example.com" },
+    { id: "portfolio3", name: "Portfolio Platform 03", url: "https://example.com" },
+    { id: "portfolio4", name: "Portfolio Platform 04", url: "https://example.com" },
+    { id: "portfolio5", name: "Portfolio Platform 05", url: "https://example.com" },
+    { id: "portfolio6", name: "Portfolio Platform 06", url: "https://example.com" },
+    { id: "portfolio7", name: "Portfolio Platform 07", url: "https://example.com" },
+    { id: "portfolio8", name: "Portfolio Platform 08", url: "https://example.com" },
+    { id: "portfolio9", name: "Portfolio Platform 09", url: "https://example.com" }
   ]
+
 };
 
-const $ = (id) => document.getElementById(id);
 
-const categoriesEl = $("categories");
-const addedGrid = $("addedGrid");
-const addedCounter = $("addedCounter");
-const emailGate = $("emailGate");
-const gateBackdrop = $("gateBackdrop");
-const emailForm = $("emailForm");
-const emailInput = $("emailInput");
-const iframeView = $("iframeView");
-const homeView = $("homeView");
-const platformFrame = $("platformFrame");
-const iframeTitle = $("iframeTitle");
-const iframeLoading = $("iframeLoading");
+/* =====================================================
+   STORAGE
+   ===================================================== */
 
-let selectedCategory = "BET";
-let added = JSON.parse(localStorage.getItem(ADDED_KEY) || "[]");
+let selections =
+  JSON.parse(
+    localStorage.getItem(SELECTION_KEY) || "{}"
+  );
 
-function showToast(message) {
-  const toast = $("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2300);
+
+let pendingCategory = null;
+let pendingSlot = null;
+
+
+/* =====================================================
+   HELPERS
+   ===================================================== */
+
+function getSelections(category) {
+
+  if (!Array.isArray(selections[category])) {
+
+    selections[category] =
+      new Array(9).fill(null);
+
+  }
+
+  return selections[category];
 }
 
-function renderCategories() {
-  categoriesEl.innerHTML = "";
-  Object.keys(gallery).forEach(category => {
-    const btn = document.createElement("button");
-    btn.className = "category-card";
-    btn.innerHTML = `<strong>${category}</strong><span>9 platforms available in the GTS Gallery.</span>`;
-    btn.addEventListener("click", () => openCategory(category));
-    categoriesEl.appendChild(btn);
-  });
+
+function saveSelections() {
+
+  localStorage.setItem(
+    SELECTION_KEY,
+    JSON.stringify(selections)
+  );
+
 }
 
-function openCategory(category) {
-  selectedCategory = category;
-  const list = gallery[category];
-  const section = document.querySelector(".added-section");
-  section.scrollIntoView({ behavior:"smooth", block:"start" });
-  renderCategoryPreview(list);
+
+/* =====================================================
+   CREATE THE 9 SLOTS
+   ===================================================== */
+
+function renderCategory(category) {
+
+  const grid =
+    document.querySelector(
+      `.platform-grid[data-category="${category}"]`
+    );
+
+  if (!grid) return;
+
+  const selected =
+    getSelections(category);
+
+  grid.innerHTML = "";
+
+
+  for (let index = 0; index < 9; index++) {
+
+    const platform = selected[index];
+
+    const slot =
+      document.createElement("button");
+
+    slot.className = "slot";
+
+
+    /* ============================
+       EMPTY SLOT
+       ============================ */
+
+    if (!platform) {
+
+      slot.classList.add("plus");
+
+      slot.innerHTML = `
+        <span class="plus-symbol">+</span>
+        <small>Add platform</small>
+      `;
+
+      slot.addEventListener(
+        "click",
+        () => openGallery(category, index)
+      );
+
+    }
+
+
+    /* ============================
+       SELECTED PLATFORM
+       ============================ */
+
+    else {
+
+      slot.innerHTML = `
+        <strong>${platform.name}</strong>
+        <small>Tap to open</small>
+      `;
+
+      slot.addEventListener(
+        "click",
+        () => openPlatform(platform)
+      );
+
+    }
+
+
+    grid.appendChild(slot);
+
+  }
+
 }
 
-function renderCategoryPreview(list) {
-  addedGrid.innerHTML = "";
-  const currentIds = new Set(added.map(item => item.id));
 
-  list.forEach(item => {
-    const card = document.createElement("article");
-    card.className = "platform-card";
-    const isAdded = currentIds.has(item.id);
-    card.innerHTML = `
-      <strong>${item.name}</strong>
-      <small>${selectedCategory}</small>
-      <button>${isAdded ? "Open" : "+ Add to MQ"}</button>
+/* =====================================================
+   RENDER EVERYTHING
+   ===================================================== */
+
+function renderAllCategories() {
+
+  categories.forEach(
+    category => renderCategory(category)
+  );
+
+}
+
+
+/* =====================================================
+   OPEN GTS GALLERY
+   ===================================================== */
+
+function openGallery(category, slotIndex) {
+
+  pendingCategory = category;
+  pendingSlot = slotIndex;
+
+
+  const title =
+    document.getElementById("galleryTitle");
+
+  title.textContent =
+    `Select a ${category.toLowerCase()} platform`;
+
+
+  const list =
+    document.getElementById("galleryList");
+
+  list.innerHTML = "";
+
+
+  const selected =
+    getSelections(category);
+
+
+  const alreadySelected =
+    new Set(
+      selected
+        .filter(Boolean)
+        .map(platform => platform.id)
+    );
+
+
+  gallery[category].forEach(platform => {
+
+    const button =
+      document.createElement("button");
+
+    button.className = "gallery-item";
+
+
+    const used =
+      alreadySelected.has(platform.id);
+
+
+    button.innerHTML = `
+      <strong>${platform.name}</strong>
+      <span>
+        ${used
+          ? "Already selected"
+          : "Tap to add"}
+      </span>
     `;
-    card.querySelector("button").addEventListener("click", () => {
-      if (isAdded) openPlatform(item);
-      else addPlatform(item);
-    });
-    addedGrid.appendChild(card);
+
+
+    button.addEventListener(
+      "click",
+      () => selectPlatform(platform)
+    );
+
+
+    list.appendChild(button);
+
   });
-  addedCounter.textContent = `${added.length} added`;
+
+
+  document
+    .getElementById("galleryOverlay")
+    .classList.remove("hidden");
+
 }
 
-function renderAdded() {
-  if (!added.length) {
-    addedGrid.innerHTML = `<div class="empty">Choose a category above and add a platform to your MQ menu.</div>`;
-    addedCounter.textContent = "0 added";
+
+/* =====================================================
+   SELECT PLATFORM
+   ===================================================== */
+
+function selectPlatform(platform) {
+
+  if (
+    pendingCategory === null ||
+    pendingSlot === null
+  ) {
     return;
   }
 
-  addedGrid.innerHTML = "";
-  added.forEach(item => {
-    const card = document.createElement("article");
-    card.className = "platform-card";
-    card.innerHTML = `
-      <strong>${item.name}</strong>
-      <small>${item.category}</small>
-      <button>Open platform</button>
-    `;
-    card.querySelector("button").addEventListener("click", () => openPlatform(item));
-    addedGrid.appendChild(card);
-  });
-  addedCounter.textContent = `${added.length} added`;
-}
 
-function addPlatform(item) {
-  if (!added.some(x => x.id === item.id)) {
-    added.push({ ...item, category: selectedCategory });
-    localStorage.setItem(ADDED_KEY, JSON.stringify(added));
-    showToast(`${item.name} added to MQ`);
+  const selected =
+    getSelections(pendingCategory);
+
+
+  /*
+     Prevent duplicate selection
+  */
+
+  const duplicate =
+    selected.some(
+      item =>
+        item &&
+        item.id === platform.id
+    );
+
+
+  if (duplicate) {
+
+    showToast(
+      "This platform is already selected."
+    );
+
+    return;
+
   }
-  renderAdded();
+
+
+  /*
+     Put platform into the exact
+     + slot that was tapped.
+  */
+
+  selected[pendingSlot] =
+    platform;
+
+
+  saveSelections();
+
+
+  closeGallery();
+
+
+  renderCategory(
+    pendingCategory
+  );
+
+
+  showToast(
+    `${platform.name} added`
+  );
+
+
+  pendingCategory = null;
+  pendingSlot = null;
+
 }
 
-function openPlatform(item) {
-  homeView.hidden = true;
-  iframeView.hidden = false;
-  iframeTitle.textContent = item.name;
-  iframeLoading.hidden = false;
-  platformFrame.src = item.url;
-  window.scrollTo({ top: 0, behavior: "instant" });
+
+/* =====================================================
+   SEE MORE / ADD MORE
+   ===================================================== */
+
+document
+  .querySelectorAll("[data-more]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const category =
+          button.dataset.more;
+
+        const selected =
+          getSelections(category);
+
+
+        /*
+           Find the first empty position.
+        */
+
+        const firstEmpty =
+          selected.findIndex(
+            item => !item
+          );
+
+
+        /*
+           If all 9 slots are full,
+           open the gallery anyway.
+        */
+
+        if (firstEmpty === -1) {
+
+          openGallery(
+            category,
+            0
+          );
+
+          return;
+
+        }
+
+
+        openGallery(
+          category,
+          firstEmpty
+        );
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   CLOSE GALLERY
+   ===================================================== */
+
+function closeGallery() {
+
+  document
+    .getElementById("galleryOverlay")
+    .classList.add("hidden");
+
 }
+
+
+document
+  .getElementById("galleryClose")
+  .addEventListener(
+    "click",
+    closeGallery
+  );
+
+
+document
+  .getElementById("galleryOverlay")
+  .addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target.id ===
+        "galleryOverlay"
+      ) {
+
+        closeGallery();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   OPEN PLATFORM IN IFRAME
+   ===================================================== */
+
+function openPlatform(platform) {
+
+  document
+    .getElementById("homeView")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("iframeView")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("iframeTitle")
+    .textContent =
+    platform.name;
+
+
+  const frame =
+    document.getElementById(
+      "platformFrame"
+    );
+
+
+  frame.src =
+    platform.url;
+
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+}
+
+
+/* =====================================================
+   BACK FROM IFRAME
+   ===================================================== */
 
 function closePlatform() {
-  platformFrame.src = "about:blank";
-  iframeView.hidden = true;
-  homeView.hidden = false;
-  renderAdded();
-  window.scrollTo({ top: 0, behavior: "instant" });
+
+  const frame =
+    document.getElementById(
+      "platformFrame"
+    );
+
+
+  frame.src =
+    "about:blank";
+
+
+  document
+    .getElementById("iframeView")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("homeView")
+    .classList.remove("hidden");
+
+
+  window.scrollTo(
+    0,
+    0
+  );
+
 }
 
-function openDrawer() {
-  $("drawer").classList.add("open");
-  $("drawer").setAttribute("aria-hidden", "false");
-  $("drawerBackdrop").classList.add("open");
-}
 
-function closeDrawer() {
-  $("drawer").classList.remove("open");
-  $("drawer").setAttribute("aria-hidden", "true");
-  $("drawerBackdrop").classList.remove("open");
-}
+document
+  .getElementById("backBtn")
+  .addEventListener(
+    "click",
+    closePlatform
+  );
 
-function requireEmailGate() {
-  if (!localStorage.getItem(STORAGE_KEY)) {
-    emailGate.classList.add("open");
-    gateBackdrop.classList.add("open");
-    document.body.style.overflow = "hidden";
-    setTimeout(() => emailInput.focus(), 450);
-  }
-}
+
+/* =====================================================
+   MQ LOGO = HOME
+   ===================================================== */
+
+document
+  .getElementById("homeLogo")
+  .addEventListener(
+    "click",
+    closePlatform
+  );
+
+
+/* =====================================================
+   SIDE MENU
+   ===================================================== */
+
+const sideMenu =
+  document.getElementById(
+    "sideMenu"
+  );
+
+
+document
+  .getElementById("menuBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      sideMenu.classList.add(
+        "open"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById("menuClose")
+  .addEventListener(
+    "click",
+    () => {
+
+      sideMenu.classList.remove(
+        "open"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   ABOUT GTH
+   ===================================================== */
+
+document
+  .getElementById("aboutGthBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      showToast(
+        "God’stime Holdings (GTH)"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   HEADER BUTTONS
+   ===================================================== */
+
+document
+  .getElementById("discoverBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      showToast(
+        "Discover"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById("supportBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      showToast(
+        "Customer Service"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById("telegramBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      showToast(
+        "Telegram"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   EMAIL GATE
+   ===================================================== */
+
+const emailGate =
+  document.getElementById(
+    "emailGate"
+  );
+
+
+const emailForm =
+  document.getElementById(
+    "emailForm"
+  );
+
+
+const emailInput =
+  document.getElementById(
+    "emailInput"
+  );
+
 
 function closeEmailGate() {
-  emailGate.classList.remove("open");
-  gateBackdrop.classList.remove("open");
-  document.body.style.overflow = "";
+
+  emailGate.classList.add(
+    "hidden"
+  );
+
 }
 
-emailForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const email = emailInput.value.trim();
-  if (!email || !emailInput.checkValidity()) {
-    emailInput.reportValidity();
-    return;
-  }
 
-  // The email is stored locally for the MQ session.
-  // Tally should be configured separately for the actual submission/collection.
-  localStorage.setItem(STORAGE_KEY, email);
-  $("welcomeTitle").textContent = "Welcome back to MQ";
+function openEmailGate() {
+
+  emailGate.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/*
+   Check whether the user has
+   already supplied an email.
+*/
+
+const savedEmail =
+  localStorage.getItem(
+    EMAIL_KEY
+  );
+
+
+if (savedEmail) {
+
   closeEmailGate();
 
-  if (TALLY_FORM_URL.includes("REPLACE_WITH_YOUR_FORM")) {
-    showToast("Email saved. Add your Tally form URL in app.js.");
-  } else {
-    window.open(TALLY_FORM_URL, "_blank", "noopener,noreferrer");
-  }
-});
-
-$("menuBtn").addEventListener("click", openDrawer);
-$("drawerClose").addEventListener("click", closeDrawer);
-$("drawerBackdrop").addEventListener("click", closeDrawer);
-$("drawerHome").addEventListener("click", () => {
-  closeDrawer();
-  closePlatform();
-});
-
-$("homeBtn").addEventListener("click", closePlatform);
-$("backBtn").addEventListener("click", closePlatform);
-$("galleryBtn").addEventListener("click", () => {
-  selectedCategory = "BET";
-  renderCategoryPreview(gallery.BET);
-  document.querySelector(".added-section").scrollIntoView({ behavior:"smooth" });
-});
-
-document.querySelectorAll("[data-action]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const action = btn.dataset.action;
-    closeDrawer();
-    if (action === "discover") showToast("Discover is ready for your GTS Gallery content.");
-    if (action === "support") showToast("Customer Service will connect users to GTS support.");
-    if (action === "telegram") showToast("Add your official GTH/GTS Telegram link here.");
-  });
-});
-
-platformFrame.addEventListener("load", () => {
-  iframeLoading.hidden = true;
-});
-
-if (localStorage.getItem(STORAGE_KEY)) {
-  $("welcomeTitle").textContent = "Welcome back to MQ";
 }
 
-renderCategories();
-renderAdded();
-requireEmailGate();
+else {
+
+  openEmailGate();
+
+}
+
+
+/* =====================================================
+   EMAIL SUBMISSION
+   ===================================================== */
+
+emailForm.addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+
+    const email =
+      emailInput.value.trim();
+
+
+    if (!email) {
+
+      emailInput.reportValidity();
+
+      return;
+
+    }
+
+
+    /*
+       Save email locally so the
+       access gate does not return
+       every time the page reloads.
+    */
+
+    localStorage.setItem(
+      EMAIL_KEY,
+      email
+    );
+
+
+    closeEmailGate();
+
+
+    /*
+       Tally is connected here once
+       the real Tally form URL is
+       inserted above.
+    */
+
+    if (
+      !TALLY_FORM_URL.includes(
+        "REPLACE_WITH_YOUR_TALLY_FORM"
+      )
+    ) {
+
+      window.open(
+        TALLY_FORM_URL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+
+
+    showToast(
+      "Welcome to MQ"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   TOAST
+   ===================================================== */
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    window.mqToastTimer
+  );
+
+
+  window.mqToastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =====================================================
+   INITIALISE
+   ===================================================== */
+
+renderAllCategories();
