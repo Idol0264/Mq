@@ -130,10 +130,121 @@ function renderCategory(category) {
 
   grid.innerHTML = "";
 
+  /*
+   * JOBS / PORTFOLIOS
+   * Approved listings are displayed first.
+   * Empty positions remain + slots for new submissions.
+   */
+
+  if (
+    category === "JOBS" ||
+    category === "PORTFOLIOS"
+  ) {
+
+    const approved =
+      category === "JOBS"
+        ? approvedJobs
+        : approvedPortfolios;
+
+    for (let index = 0; index < 9; index++) {
+
+      const listing =
+        approved[index];
+
+      const slot =
+        document.createElement("button");
+
+      slot.className = "slot";
+
+      if (listing) {
+
+        slot.classList.add("listing-slot");
+
+        const image =
+          listing.image ||
+          listing.logo ||
+          "";
+
+        slot.innerHTML = `
+          ${
+            image
+              ? `<img
+                   src="${image}"
+                   alt=""
+                   class="listing-image"
+                 >`
+              : ""
+          }
+
+          <strong>
+            ${
+              listing.title ||
+              listing.name ||
+              listing.company ||
+              "Listing"
+            }
+          </strong>
+
+          <small>
+            ${
+              listing.subtitle ||
+              listing.profession ||
+              listing.location ||
+              ""
+            }
+          </small>
+        `;
+
+        slot.addEventListener(
+          "click",
+          () => openListing(
+            listing,
+            category
+          )
+        );
+
+      } else {
+
+        slot.classList.add("plus");
+
+        slot.innerHTML = `
+          <span class="plus-symbol">+</span>
+          <small>
+            ${
+              category === "JOBS"
+                ? "Submit job"
+                : "Submit portfolio"
+            }
+          </small>
+        `;
+
+        slot.addEventListener(
+          "click",
+          () => openGallery(
+            category,
+            index
+          )
+        );
+
+      }
+
+      grid.appendChild(slot);
+
+    }
+
+    return;
+
+  }
+
+
+  /*
+   * BET / BROKERS / BANKS
+   */
 
   for (let index = 0; index < 9; index++) {
 
-    const platform = selected[index];
+    const platform =
+      selected[index];
 
     const slot =
       document.createElement("button");
@@ -152,19 +263,29 @@ function renderCategory(category) {
 
       slot.addEventListener(
         "click",
-        () => openGallery(category, index)
+        () => openGallery(
+          category,
+          index
+        )
       );
 
     } else {
 
       slot.innerHTML = `
-        <strong>${platform.name}</strong>
-        <small>Tap to open</small>
+        <strong>
+          ${platform.name}
+        </strong>
+
+        <small>
+          Tap to open
+        </small>
       `;
 
       slot.addEventListener(
         "click",
-        () => openPlatform(platform)
+        () => openPlatform(
+          platform
+        )
       );
 
     }
@@ -174,7 +295,6 @@ function renderCategory(category) {
   }
 
 }
-
 
 /* =====================================================
    RENDER ALL
