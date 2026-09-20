@@ -527,12 +527,7 @@ function openPlatform(platform) {
 
   }
 
-
-  window.open(
-    platform.url,
-    "_blank",
-    "noopener,noreferrer"
-  );
+  window.location.href = platform.url;
 
 }
 
