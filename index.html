@@ -2,113 +2,266 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0b0b0d">
-  <title>MQ — Money Making Menu | GT Softwares</title>
+  <meta name="theme-color" content="#111111">
+  <title>MQ — Money Making Menu</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="ambient ambient-a"></div>
-  <div class="ambient ambient-b"></div>
-  <div class="ambient ambient-c"></div>
 
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="top-left">
-        <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰</button>
-        <button class="mq-brand" id="homeBtn" aria-label="MQ Home">
-          <span class="mq-mark">MQ</span>
-          <span class="mq-name">Money Making Menu</span>
-        </button>
-      </div>
-      <nav class="top-actions" aria-label="MQ actions">
-        <button class="top-action" data-action="discover">Discover</button>
-        <button class="top-action" data-action="support">Customer Service</button>
-        <button class="top-action telegram" data-action="telegram">Telegram</button>
-      </nav>
-    </header>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-three"></div>
 
-    <main class="content" id="homeView">
-      <section class="welcome-card">
-        <p class="eyebrow">GT SOFTwares</p>
-        <h1 id="welcomeTitle">Welcome to MQ</h1>
-        <p>Build your own working menu by adding useful platforms from the GTS Gallery.</p>
-      </section>
+  <!-- TOP HEADER -->
+  <header class="topbar">
 
-      <section class="category-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">GTS GALLERY</p>
-            <h2>Choose a category</h2>
-          </div>
-          <button class="small-btn" id="galleryBtn">See More</button>
-        </div>
+    <div class="top-left">
 
-        <div class="categories" id="categories"></div>
-      </section>
+      <!-- MENU -->
+      <button class="icon-btn" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
 
-      <section class="added-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">YOUR MQ</p>
-            <h2>Added platforms</h2>
-          </div>
-          <span class="counter" id="addedCounter">0 added</span>
-        </div>
-        <div class="added-grid" id="addedGrid"></div>
-      </section>
-    </main>
+      <!-- MQ HOME -->
+      <button class="mq-logo" id="homeLogo" aria-label="MQ Home">
+        MQ
+      </button>
 
-    <section class="iframe-view" id="iframeView" hidden>
-      <div class="iframe-head">
-        <div>
-          <span class="eyebrow">MQ PLATFORM</span>
-          <h2 id="iframeTitle">Platform</h2>
-        </div>
-        <button class="back-btn" id="backBtn">← Back</button>
-      </div>
-      <div class="iframe-frame">
-        <div class="iframe-loading" id="iframeLoading">Loading platform…</div>
-        <iframe id="platformFrame" title="MQ platform" allow="payment; clipboard-read; clipboard-write" loading="eager"></iframe>
-      </div>
+    </div>
+
+    <!-- RIGHT HEADER ICONS -->
+    <nav class="top-actions">
+
+      <!-- TELEGRAM -->
+      <button class="icon-btn" id="telegramBtn" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.5 3.5 18.1 20c-.25 1.15-.92 1.43-1.87.9l-5.15-3.8-2.48 2.39c-.27.27-.5.5-1.03.5l.37-5.24 9.53-8.61c.41-.37-.09-.57-.64-.2L5.06 13.3.05 11.73c-1.09-.34-1.11-1.09.23-1.59L19.86 2.56c.9-.33 1.69.2 1.64.94Z"></path>
+        </svg>
+      </button>
+
+      <!-- CUSTOMER SERVICE -->
+      <button class="icon-btn" id="supportBtn" aria-label="Customer Service">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 13v-1a8 8 0 0 1 16 0v1"></path>
+          <path d="M4 13h3v5H5a1 1 0 0 1-1-1v-4ZM20 13h-3v5h2a1 1 0 0 0 1-1v-4Z"></path>
+          <path d="M20 18c0 1.1-.9 2-2 2h-2"></path>
+        </svg>
+      </button>
+
+      <!-- DISCOVER — QUESTION MARK -->
+      <button class="icon-btn" id="discoverBtn" aria-label="Discover">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.6 9a2.7 2.7 0 1 1 4.8 1.7c-.8.9-1.9 1.3-1.9 2.8"></path>
+          <path d="M12 17h.01"></path>
+        </svg>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- MAIN HOME -->
+  <main id="homeView">
+
+    <section class="welcome-card">
+      <span class="eyebrow">GTS SOFTWARE</span>
+      <h1>Welcome to MQ</h1>
+      <p>
+        Your Money Making Menu — a simple place to access
+        useful money-making platforms and digital opportunities.
+      </p>
     </section>
 
-    <footer class="bottom-tab">
-      <div>
-        <strong>GT Softwares</strong>
-        <span>An GTH Product</span>
+
+    <!-- BET -->
+    <section class="category">
+      <div class="category-line">
+        <span>BET</span>
       </div>
-      <span class="mq-footer">MQ</span>
-    </footer>
-  </div>
 
-  <aside class="drawer" id="drawer" aria-hidden="true">
-    <button class="drawer-close" id="drawerClose">×</button>
-    <p class="eyebrow">MQ MENU</p>
-    <button class="drawer-link" id="drawerHome">Home</button>
-    <button class="drawer-link" data-action="discover">Discover</button>
-    <button class="drawer-link" data-action="support">Customer Service</button>
-    <button class="drawer-link" data-action="telegram">Telegram</button>
-  </aside>
-  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+      <div class="platform-grid" data-category="BET"></div>
 
-  <!-- Required email gate. Replace the Tally embed URL in app.js. -->
-  <div class="gate-backdrop" id="gateBackdrop"></div>
-  <section class="email-gate" id="emailGate" aria-modal="true" role="dialog">
-    <div class="gate-handle"></div>
-    <p class="eyebrow">WELCOME TO MQ</p>
-    <h2>Let GTS know you…</h2>
-    <p class="gate-copy">Enter your email to continue to Money Making Menu.</p>
+      <button class="more-btn" data-more="BET">
+        SEE MORE / ADD MORE
+      </button>
+    </section>
 
-    <form id="emailForm" class="email-form">
-      <input id="emailInput" type="email" autocomplete="email" placeholder="Enter your email" required>
-      <button type="submit">Continue to MQ</button>
-    </form>
-    <p class="gate-note">Your email form is powered by Tally.</p>
+
+    <!-- BROKERS -->
+    <section class="category">
+      <div class="category-line">
+        <span>BROKERS</span>
+      </div>
+
+      <div class="platform-grid" data-category="BROKERS"></div>
+
+      <button class="more-btn" data-more="BROKERS">
+        SEE MORE / ADD MORE
+      </button>
+    </section>
+
+
+    <!-- BANKS -->
+    <section class="category">
+      <div class="category-line">
+        <span>BANKS</span>
+      </div>
+
+      <div class="platform-grid" data-category="BANKS"></div>
+
+      <button class="more-btn" data-more="BANKS">
+        SEE MORE / ADD MORE
+      </button>
+    </section>
+
+
+    <!-- JOBS -->
+    <section class="category">
+      <div class="category-line">
+        <span>JOBS</span>
+      </div>
+
+      <div class="platform-grid" data-category="JOBS"></div>
+
+      <button class="more-btn" data-more="JOBS">
+        SEE MORE / ADD MORE
+      </button>
+    </section>
+
+
+    <!-- PORTFOLIOS -->
+    <section class="category">
+      <div class="category-line">
+        <span>PORTFOLIOS</span>
+      </div>
+
+      <div class="platform-grid" data-category="PORTFOLIOS"></div>
+
+      <button class="more-btn" data-more="PORTFOLIOS">
+        SEE MORE / ADD MORE
+      </button>
+    </section>
+
+  </main>
+
+
+  <!-- IFRAME PLATFORM VIEW -->
+  <section id="iframeView" class="iframe-view hidden">
+
+    <div class="iframe-header">
+      <button id="backBtn" class="back-btn">
+        ← Back
+      </button>
+
+      <strong id="iframeTitle">Platform</strong>
+    </div>
+
+    <iframe
+      id="platformFrame"
+      title="MQ Platform"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+
   </section>
 
-  <div class="toast" id="toast" role="status"></div>
+
+  <!-- GALLERY -->
+  <div id="galleryOverlay" class="gallery-overlay hidden">
+
+    <div class="gallery-screen">
+
+      <div class="gallery-header">
+        <div>
+          <span class="eyebrow">GTS GALLERY</span>
+          <h2 id="galleryTitle">Select Platform</h2>
+        </div>
+
+        <button id="galleryClose" class="close-btn" aria-label="Close">
+          ×
+        </button>
+      </div>
+
+      <div id="galleryList" class="gallery-list"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SIDE MENU -->
+  <aside id="sideMenu" class="side-menu">
+
+    <div class="side-menu-header">
+      <strong>MQ</strong>
+
+      <button id="menuClose" class="close-btn" aria-label="Close menu">
+        ×
+      </button>
+    </div>
+
+    <button id="aboutGthBtn" class="menu-item">
+      About GTH
+    </button>
+
+  </aside>
+
+
+  <!-- EMAIL GATE -->
+  <div id="emailGate" class="email-gate">
+
+    <div class="email-sheet">
+
+      <div class="sheet-handle"></div>
+
+      <span class="eyebrow">MQ ACCESS</span>
+
+      <h2>Let GTS know you…</h2>
+
+      <p>
+        Enter your email to continue using MQ.
+      </p>
+
+      <form id="emailForm">
+
+        <input
+          type="email"
+          id="emailInput"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required>
+
+        <button type="submit">
+          Continue
+        </button>
+
+      </form>
+
+      <small>
+        Your email is required to access MQ.
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- FIXED BOTTOM TAB -->
+  <footer class="bottom-tab">
+    <strong>GT Softwares</strong>
+    <span>An GTH Product</span>
+  </footer>
+
+
+  <div id="toast" class="toast"></div>
+
   <script src="app.js"></script>
+
 </body>
 </html>
