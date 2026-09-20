@@ -14,70 +14,188 @@ const categories = [
 
 /* =====================================================
    GTS GALLERY
-   Replace these example URLs with the real platforms
+
+   JOBS and PORTFOLIOS intentionally have no platforms.
+   Their + slots will later connect to Tally submissions.
    ===================================================== */
 
 const gallery = {
 
+  /* =========================
+     BET
+  ========================= */
+
   BET: [
-    { id: "bet1", name: "Bet Platform 01", url: "https://example.com" },
-    { id: "bet2", name: "Bet Platform 02", url: "https://example.com" },
-    { id: "bet3", name: "Bet Platform 03", url: "https://example.com" },
-    { id: "bet4", name: "Bet Platform 04", url: "https://example.com" },
-    { id: "bet5", name: "Bet Platform 05", url: "https://example.com" },
-    { id: "bet6", name: "Bet Platform 06", url: "https://example.com" },
-    { id: "bet7", name: "Bet Platform 07", url: "https://example.com" },
-    { id: "bet8", name: "Bet Platform 08", url: "https://example.com" },
-    { id: "bet9", name: "Bet Platform 09", url: "https://example.com" }
+    {
+      id: "bet9ja",
+      name: "Bet9ja",
+      url: "https://www.bet9ja.com"
+    },
+    {
+      id: "sportybet",
+      name: "SportyBet",
+      url: "https://www.sportybet.com"
+    },
+    {
+      id: "betpawa",
+      name: "betPawa",
+      url: "https://www.betpawa.com"
+    },
+    {
+      id: "betway",
+      name: "Betway",
+      url: "https://www.betway.com"
+    },
+    {
+      id: "betking",
+      name: "BetKing",
+      url: "https://www.betking.com"
+    },
+    {
+      id: "1xbet",
+      name: "1xBet",
+      url: "https://1xbet.com"
+    },
+    {
+      id: "bet365",
+      name: "bet365",
+      url: "https://www.bet365.com"
+    },
+    {
+      id: "betika",
+      name: "Betika",
+      url: "https://www.betika.com"
+    },
+    {
+      id: "betwinner",
+      name: "Betwinner",
+      url: "https://betwinner.com"
+    }
   ],
+
+
+  /* =========================
+     BROKERS / INVESTMENT
+  ========================= */
 
   BROKERS: [
-    { id: "broker1", name: "Broker Platform 01", url: "https://example.com" },
-    { id: "broker2", name: "Broker Platform 02", url: "https://example.com" },
-    { id: "broker3", name: "Broker Platform 03", url: "https://example.com" },
-    { id: "broker4", name: "Broker Platform 04", url: "https://example.com" },
-    { id: "broker5", name: "Broker Platform 05", url: "https://example.com" },
-    { id: "broker6", name: "Broker Platform 06", url: "https://example.com" },
-    { id: "broker7", name: "Broker Platform 07", url: "https://example.com" },
-    { id: "broker8", name: "Broker Platform 08", url: "https://example.com" },
-    { id: "broker9", name: "Broker Platform 09", url: "https://example.com" }
+    {
+      id: "ngx",
+      name: "NGX",
+      url: "https://www.ngxgroup.com"
+    },
+    {
+      id: "bamboo",
+      name: "Bamboo",
+      url: "https://investbamboo.com"
+    },
+    {
+      id: "cowrywise",
+      name: "Cowrywise",
+      url: "https://cowrywise.com"
+    },
+    {
+      id: "trove",
+      name: "Trove",
+      url: "https://troveapp.co"
+    },
+    {
+      id: "chaka",
+      name: "Chaka",
+      url: "https://chaka.com"
+    },
+    {
+      id: "rise",
+      name: "Rise",
+      url: "https://risevest.com"
+    },
+    {
+      id: "stanbic-ibtc",
+      name: "Stanbic IBTC",
+      url: "https://www.stanbicibtcbank.com"
+    },
+    {
+      id: "gse",
+      name: "Ghana Stock Exchange",
+      url: "https://gse.com.gh"
+    },
+    {
+      id: "ic-securities",
+      name: "IC Securities",
+      url: "https://icsecurities.com"
+    }
   ],
+
+
+  /* =========================
+     BANKS
+  ========================= */
 
   BANKS: [
-    { id: "bank1", name: "Bank Platform 01", url: "https://example.com" },
-    { id: "bank2", name: "Bank Platform 02", url: "https://example.com" },
-    { id: "bank3", name: "Bank Platform 03", url: "https://example.com" },
-    { id: "bank4", name: "Bank Platform 04", url: "https://example.com" },
-    { id: "bank5", name: "Bank Platform 05", url: "https://example.com" },
-    { id: "bank6", name: "Bank Platform 06", url: "https://example.com" },
-    { id: "bank7", name: "Bank Platform 07", url: "https://example.com" },
-    { id: "bank8", name: "Bank Platform 08", url: "https://example.com" },
-    { id: "bank9", name: "Bank Platform 09", url: "https://example.com" }
+    {
+      id: "access-bank",
+      name: "Access Bank",
+      url: "https://www.accessbankplc.com"
+    },
+    {
+      id: "gtco",
+      name: "GTCO / GTBank",
+      url: "https://www.gtbank.com"
+    },
+    {
+      id: "uba",
+      name: "UBA",
+      url: "https://www.ubagroup.com"
+    },
+    {
+      id: "firstbank",
+      name: "FirstBank",
+      url: "https://www.firstbanknigeria.com"
+    },
+    {
+      id: "zenith",
+      name: "Zenith Bank",
+      url: "https://www.zenithbank.com"
+    },
+    {
+      id: "stanbic-ibtc-bank",
+      name: "Stanbic IBTC",
+      url: "https://www.stanbicibtcbank.com"
+    },
+    {
+      id: "gcb",
+      name: "GCB Bank",
+      url: "https://www.gcb.com.gh"
+    },
+    {
+      id: "ecobank",
+      name: "Ecobank",
+      url: "https://www.ecobank.com"
+    },
+    {
+      id: "absa-ghana",
+      name: "Absa Ghana",
+      url: "https://www.absa.com.gh"
+    }
   ],
 
-  JOBS: [
-    { id: "job1", name: "Jobs Platform 01", url: "https://example.com" },
-    { id: "job2", name: "Jobs Platform 02", url: "https://example.com" },
-    { id: "job3", name: "Jobs Platform 03", url: "https://example.com" },
-    { id: "job4", name: "Jobs Platform 04", url: "https://example.com" },
-    { id: "job5", name: "Jobs Platform 05", url: "https://example.com" },
-    { id: "job6", name: "Jobs Platform 06", url: "https://example.com" },
-    { id: "job7", name: "Jobs Platform 07", url: "https://example.com" },
-    { id: "job8", name: "Jobs Platform 08", url: "https://example.com" },
-    { id: "job9", name: "Jobs Platform 09", url: "https://example.com" }
-  ],
 
-  PORTFOLIOS: [
-    { id: "portfolio1", name: "Portfolio Platform 01", url: "https://example.com" },
-    { id: "portfolio2", name: "Portfolio Platform 02", url: "https://example.com" },
-    { id: "portfolio3", name: "Portfolio Platform 03", url: "https://example.com" },
-    { id: "portfolio4", name: "Portfolio Platform 04", url: "https://example.com" },
-    { id: "portfolio5", name: "Portfolio Platform 05", url: "https://example.com" },
-    { id: "portfolio6", name: "Portfolio Platform 06", url: "https://example.com" },
-    { id: "portfolio7", name: "Portfolio Platform 07", url: "https://example.com" },
-    { id: "portfolio8", name: "Portfolio Platform 08", url: "https://example.com" },
-    { id: "portfolio9", name: "Portfolio Platform 09", url: "https://example.com" }
-  ]
+  /* =========================
+     JOBS
+     
+     INTENTIONALLY EMPTY.
+     ========================= */
+
+  JOBS: [],
+
+
+  /* =========================
+     PORTFOLIOS
+     
+     INTENTIONALLY EMPTY.
+     ========================= */
+
+  PORTFOLIOS: []
 
 };
 
@@ -110,6 +228,7 @@ function getSelections(category) {
   }
 
   return selections[category];
+
 }
 
 
@@ -152,9 +271,7 @@ function renderCategory(category) {
     slot.className = "slot";
 
 
-    /* ============================
-       EMPTY SLOT
-       ============================ */
+    /* EMPTY */
 
     if (!platform) {
 
@@ -173,9 +290,7 @@ function renderCategory(category) {
     }
 
 
-    /* ============================
-       SELECTED PLATFORM
-       ============================ */
+    /* SELECTED */
 
     else {
 
@@ -200,7 +315,7 @@ function renderCategory(category) {
 
 
 /* =====================================================
-   RENDER EVERYTHING
+   RENDER ALL
    ===================================================== */
 
 function renderAllCategories() {
@@ -213,7 +328,7 @@ function renderAllCategories() {
 
 
 /* =====================================================
-   OPEN GTS GALLERY
+   OPEN GALLERY
    ===================================================== */
 
 function openGallery(category, slotIndex) {
@@ -223,66 +338,181 @@ function openGallery(category, slotIndex) {
 
 
   const title =
-    document.getElementById("galleryTitle");
+    document.getElementById(
+      "galleryTitle"
+    );
 
-  title.textContent =
-    `Select a ${category.toLowerCase()} platform`;
+
+  if (
+    category === "JOBS" ||
+    category === "PORTFOLIOS"
+  ) {
+
+    title.textContent =
+      `Submit ${category.toLowerCase()} listing`;
+
+  }
+
+  else {
+
+    title.textContent =
+      `Select a ${category.toLowerCase()} platform`;
+
+  }
 
 
   const list =
-    document.getElementById("galleryList");
+    document.getElementById(
+      "galleryList"
+    );
+
 
   list.innerHTML = "";
 
 
-  const selected =
-    getSelections(category);
+  /* =================================================
+     JOBS / PORTFOLIOS
+     
+     These currently go to Tally instead of a
+     software gallery.
+     ================================================= */
 
-
-  const alreadySelected =
-    new Set(
-      selected
-        .filter(Boolean)
-        .map(platform => platform.id)
-    );
-
-
-  gallery[category].forEach(platform => {
+  if (
+    category === "JOBS" ||
+    category === "PORTFOLIOS"
+  ) {
 
     const button =
       document.createElement("button");
 
-    button.className = "gallery-item";
+    button.className =
+      "gallery-item";
 
 
-    const used =
-      alreadySelected.has(platform.id);
+    const label =
+      category === "JOBS"
+        ? "Submit a Job Opportunity"
+        : "Submit a Portfolio";
 
 
     button.innerHTML = `
-      <strong>${platform.name}</strong>
+      <strong>${label}</strong>
       <span>
-        ${used
-          ? "Already selected"
-          : "Tap to add"}
+        Tap to open the submission form
       </span>
     `;
 
 
     button.addEventListener(
       "click",
-      () => selectPlatform(platform)
+      () => openSubmissionForm(category)
     );
 
 
     list.appendChild(button);
 
-  });
+  }
+
+
+  /* =================================================
+     NORMAL PLATFORM GALLERY
+     ================================================= */
+
+  else {
+
+    const selected =
+      getSelections(category);
+
+
+    const alreadySelected =
+      new Set(
+        selected
+          .filter(Boolean)
+          .map(
+            platform => platform.id
+          )
+      );
+
+
+    gallery[category].forEach(
+      platform => {
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "gallery-item";
+
+
+        const used =
+          alreadySelected.has(
+            platform.id
+          );
+
+
+        button.innerHTML = `
+          <strong>${platform.name}</strong>
+          <span>
+            ${
+              used
+                ? "Already selected"
+                : "Tap to add"
+            }
+          </span>
+        `;
+
+
+        button.addEventListener(
+          "click",
+          () => selectPlatform(platform)
+        );
+
+
+        list.appendChild(button);
+
+      }
+    );
+
+  }
 
 
   document
     .getElementById("galleryOverlay")
     .classList.remove("hidden");
+
+}
+
+
+/* =====================================================
+   TALLY SUBMISSION
+   ===================================================== */
+
+function openSubmissionForm(category) {
+
+  if (
+    TALLY_FORM_URL.includes(
+      "REPLACE_WITH_YOUR_TALLY_FORM"
+    )
+  ) {
+
+    showToast(
+      "Tally form will be connected here."
+    );
+
+    return;
+
+  }
+
+
+  const url =
+    `${TALLY_FORM_URL}?category=${encodeURIComponent(category)}`;
+
+
+  window.open(
+    url,
+    "_blank",
+    "noopener,noreferrer"
+  );
 
 }
 
@@ -302,12 +532,10 @@ function selectPlatform(platform) {
 
 
   const selected =
-    getSelections(pendingCategory);
+    getSelections(
+      pendingCategory
+    );
 
-
-  /*
-     Prevent duplicate selection
-  */
 
   const duplicate =
     selected.some(
@@ -327,11 +555,6 @@ function selectPlatform(platform) {
 
   }
 
-
-  /*
-     Put platform into the exact
-     + slot that was tapped.
-  */
 
   selected[pendingSlot] =
     platform;
@@ -374,13 +597,10 @@ document
         const category =
           button.dataset.more;
 
+
         const selected =
           getSelections(category);
 
-
-        /*
-           Find the first empty position.
-        */
 
         const firstEmpty =
           selected.findIndex(
@@ -389,8 +609,9 @@ document
 
 
         /*
-           If all 9 slots are full,
-           open the gallery anyway.
+           For Jobs and Portfolios,
+           the first empty + remains the
+           entry point for Tally.
         */
 
         if (firstEmpty === -1) {
@@ -423,14 +644,18 @@ document
 function closeGallery() {
 
   document
-    .getElementById("galleryOverlay")
+    .getElementById(
+      "galleryOverlay"
+    )
     .classList.add("hidden");
 
 }
 
 
 document
-  .getElementById("galleryClose")
+  .getElementById(
+    "galleryClose"
+  )
   .addEventListener(
     "click",
     closeGallery
@@ -438,7 +663,9 @@ document
 
 
 document
-  .getElementById("galleryOverlay")
+  .getElementById(
+    "galleryOverlay"
+  )
   .addEventListener(
     "click",
     event => {
@@ -457,23 +684,29 @@ document
 
 
 /* =====================================================
-   OPEN PLATFORM IN IFRAME
+   OPEN PLATFORM
    ===================================================== */
 
 function openPlatform(platform) {
 
   document
-    .getElementById("homeView")
+    .getElementById(
+      "homeView"
+    )
     .classList.add("hidden");
 
 
   document
-    .getElementById("iframeView")
+    .getElementById(
+      "iframeView"
+    )
     .classList.remove("hidden");
 
 
   document
-    .getElementById("iframeTitle")
+    .getElementById(
+      "iframeTitle"
+    )
     .textContent =
     platform.name;
 
@@ -497,7 +730,7 @@ function openPlatform(platform) {
 
 
 /* =====================================================
-   BACK FROM IFRAME
+   BACK
    ===================================================== */
 
 function closePlatform() {
@@ -513,12 +746,16 @@ function closePlatform() {
 
 
   document
-    .getElementById("iframeView")
+    .getElementById(
+      "iframeView"
+    )
     .classList.add("hidden");
 
 
   document
-    .getElementById("homeView")
+    .getElementById(
+      "homeView"
+    )
     .classList.remove("hidden");
 
 
@@ -531,7 +768,9 @@ function closePlatform() {
 
 
 document
-  .getElementById("backBtn")
+  .getElementById(
+    "backBtn"
+  )
   .addEventListener(
     "click",
     closePlatform
@@ -539,11 +778,13 @@ document
 
 
 /* =====================================================
-   MQ LOGO = HOME
+   MQ LOGO
    ===================================================== */
 
 document
-  .getElementById("homeLogo")
+  .getElementById(
+    "homeLogo"
+  )
   .addEventListener(
     "click",
     closePlatform
@@ -561,7 +802,9 @@ const sideMenu =
 
 
 document
-  .getElementById("menuBtn")
+  .getElementById(
+    "menuBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -575,7 +818,9 @@ document
 
 
 document
-  .getElementById("menuClose")
+  .getElementById(
+    "menuClose"
+  )
   .addEventListener(
     "click",
     () => {
@@ -593,7 +838,9 @@ document
    ===================================================== */
 
 document
-  .getElementById("aboutGthBtn")
+  .getElementById(
+    "aboutGthBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -611,7 +858,9 @@ document
    ===================================================== */
 
 document
-  .getElementById("discoverBtn")
+  .getElementById(
+    "discoverBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -625,7 +874,9 @@ document
 
 
 document
-  .getElementById("supportBtn")
+  .getElementById(
+    "supportBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -639,7 +890,9 @@ document
 
 
 document
-  .getElementById("telegramBtn")
+  .getElementById(
+    "telegramBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -692,11 +945,6 @@ function openEmailGate() {
 }
 
 
-/*
-   Check whether the user has
-   already supplied an email.
-*/
-
 const savedEmail =
   localStorage.getItem(
     EMAIL_KEY
@@ -740,12 +988,6 @@ emailForm.addEventListener(
     }
 
 
-    /*
-       Save email locally so the
-       access gate does not return
-       every time the page reloads.
-    */
-
     localStorage.setItem(
       EMAIL_KEY,
       email
@@ -754,12 +996,6 @@ emailForm.addEventListener(
 
     closeEmailGate();
 
-
-    /*
-       Tally is connected here once
-       the real Tally form URL is
-       inserted above.
-    */
 
     if (
       !TALLY_FORM_URL.includes(
