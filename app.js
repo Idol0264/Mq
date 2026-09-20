@@ -312,35 +312,23 @@ function openGallery(category, slotIndex) {
 
 function openTallyForm(category) {
 
-  if (
-    TALLY_FORM_URL.includes(
-      "REPLACE_WITH_YOUR_TALLY_FORM"
-    )
-  ) {
+  const tallyUrl = TALLY_FORMS[category];
 
+  if (!tallyUrl) {
     closeGallery();
-
-    showToast(
-      "Add your Tally form link first."
-    );
-
+    showToast("Tally form unavailable.");
     return;
-
   }
 
-
   closeGallery();
-
 
   document
     .getElementById("homeView")
     .classList.add("hidden");
 
-
   document
     .getElementById("iframeView")
     .classList.remove("hidden");
-
 
   document
     .getElementById("iframeTitle")
@@ -349,30 +337,19 @@ function openTallyForm(category) {
       ? "Submit Job Opportunity"
       : "Submit Portfolio";
 
-
   const frame =
-    document.getElementById(
-      "platformFrame"
-    );
-
+    document.getElementById("platformFrame");
 
   const separator =
-    TALLY_FORM_URL.includes("?")
+    tallyUrl.includes("?")
       ? "&"
       : "?";
 
-
   frame.src =
-    `${TALLY_FORM_URL}${separator}category=${encodeURIComponent(category)}`;
+    `${tallyUrl}${separator}category=${encodeURIComponent(category)}`;
 
-
-  window.scrollTo(
-    0,
-    0
-  );
-
+  window.scrollTo(0, 0);
 }
-
 
 /* =====================================================
    SELECT PLATFORM
