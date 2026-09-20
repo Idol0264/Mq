@@ -14,186 +14,50 @@ const categories = [
 
 /* =====================================================
    GTS GALLERY
-
-   JOBS and PORTFOLIOS intentionally have no platforms.
-   Their + slots will later connect to Tally submissions.
    ===================================================== */
 
 const gallery = {
 
-  /* =========================
-     BET
-  ========================= */
-
   BET: [
-    {
-      id: "bet9ja",
-      name: "Bet9ja",
-      url: "https://www.bet9ja.com"
-    },
-    {
-      id: "sportybet",
-      name: "SportyBet",
-      url: "https://www.sportybet.com"
-    },
-    {
-      id: "betpawa",
-      name: "betPawa",
-      url: "https://www.betpawa.com"
-    },
-    {
-      id: "betway",
-      name: "Betway",
-      url: "https://www.betway.com"
-    },
-    {
-      id: "betking",
-      name: "BetKing",
-      url: "https://www.betking.com"
-    },
-    {
-      id: "1xbet",
-      name: "1xBet",
-      url: "https://1xbet.com"
-    },
-    {
-      id: "bet365",
-      name: "bet365",
-      url: "https://www.bet365.com"
-    },
-    {
-      id: "betika",
-      name: "Betika",
-      url: "https://www.betika.com"
-    },
-    {
-      id: "betwinner",
-      name: "Betwinner",
-      url: "https://betwinner.com"
-    }
+    { id: "bet9ja", name: "Bet9ja", url: "https://www.bet9ja.com" },
+    { id: "sportybet", name: "SportyBet", url: "https://www.sportybet.com" },
+    { id: "betpawa", name: "betPawa", url: "https://www.betpawa.com" },
+    { id: "betway", name: "Betway", url: "https://www.betway.com" },
+    { id: "betking", name: "BetKing", url: "https://www.betking.com" },
+    { id: "1xbet", name: "1xBet", url: "https://1xbet.com" },
+    { id: "bet365", name: "bet365", url: "https://www.bet365.com" },
+    { id: "betika", name: "Betika", url: "https://www.betika.com" },
+    { id: "betwinner", name: "Betwinner", url: "https://betwinner.com" }
   ],
-
-
-  /* =========================
-     BROKERS / INVESTMENT
-  ========================= */
 
   BROKERS: [
-    {
-      id: "ngx",
-      name: "NGX",
-      url: "https://www.ngxgroup.com"
-    },
-    {
-      id: "bamboo",
-      name: "Bamboo",
-      url: "https://investbamboo.com"
-    },
-    {
-      id: "cowrywise",
-      name: "Cowrywise",
-      url: "https://cowrywise.com"
-    },
-    {
-      id: "trove",
-      name: "Trove",
-      url: "https://troveapp.co"
-    },
-    {
-      id: "chaka",
-      name: "Chaka",
-      url: "https://chaka.com"
-    },
-    {
-      id: "rise",
-      name: "Rise",
-      url: "https://risevest.com"
-    },
-    {
-      id: "stanbic-ibtc",
-      name: "Stanbic IBTC",
-      url: "https://www.stanbicibtcbank.com"
-    },
-    {
-      id: "gse",
-      name: "Ghana Stock Exchange",
-      url: "https://gse.com.gh"
-    },
-    {
-      id: "ic-securities",
-      name: "IC Securities",
-      url: "https://icsecurities.com"
-    }
+    { id: "ngx", name: "NGX", url: "https://www.ngxgroup.com" },
+    { id: "bamboo", name: "Bamboo", url: "https://investbamboo.com" },
+    { id: "cowrywise", name: "Cowrywise", url: "https://cowrywise.com" },
+    { id: "trove", name: "Trove", url: "https://troveapp.co" },
+    { id: "chaka", name: "Chaka", url: "https://chaka.com" },
+    { id: "rise", name: "Rise", url: "https://risevest.com" },
+    { id: "stanbic-ibtc", name: "Stanbic IBTC", url: "https://www.stanbicibtcbank.com" },
+    { id: "gse", name: "Ghana Stock Exchange", url: "https://gse.com.gh" },
+    { id: "ic-securities", name: "IC Securities", url: "https://icsecurities.com" }
   ],
-
-
-  /* =========================
-     BANKS
-  ========================= */
 
   BANKS: [
-    {
-      id: "access-bank",
-      name: "Access Bank",
-      url: "https://www.accessbankplc.com"
-    },
-    {
-      id: "gtco",
-      name: "GTCO / GTBank",
-      url: "https://www.gtbank.com"
-    },
-    {
-      id: "uba",
-      name: "UBA",
-      url: "https://www.ubagroup.com"
-    },
-    {
-      id: "firstbank",
-      name: "FirstBank",
-      url: "https://www.firstbanknigeria.com"
-    },
-    {
-      id: "zenith",
-      name: "Zenith Bank",
-      url: "https://www.zenithbank.com"
-    },
-    {
-      id: "stanbic-ibtc-bank",
-      name: "Stanbic IBTC",
-      url: "https://www.stanbicibtcbank.com"
-    },
-    {
-      id: "gcb",
-      name: "GCB Bank",
-      url: "https://www.gcb.com.gh"
-    },
-    {
-      id: "ecobank",
-      name: "Ecobank",
-      url: "https://www.ecobank.com"
-    },
-    {
-      id: "absa-ghana",
-      name: "Absa Ghana",
-      url: "https://www.absa.com.gh"
-    }
+    { id: "access-bank", name: "Access Bank", url: "https://www.accessbankplc.com" },
+    { id: "gtco", name: "GTCO / GTBank", url: "https://www.gtbank.com" },
+    { id: "uba", name: "UBA", url: "https://www.ubagroup.com" },
+    { id: "firstbank", name: "FirstBank", url: "https://www.firstbanknigeria.com" },
+    { id: "zenith", name: "Zenith Bank", url: "https://www.zenithbank.com" },
+    { id: "stanbic-ibtc-bank", name: "Stanbic IBTC", url: "https://www.stanbicibtcbank.com" },
+    { id: "gcb", name: "GCB Bank", url: "https://www.gcb.com.gh" },
+    { id: "ecobank", name: "Ecobank", url: "https://www.ecobank.com" },
+    { id: "absa-ghana", name: "Absa Ghana", url: "https://www.absa.com.gh" }
   ],
 
-
-  /* =========================
-     JOBS
-     
-     INTENTIONALLY EMPTY.
-     ========================= */
+  /* These remain empty intentionally.
+     Their + buttons lead to Tally submissions. */
 
   JOBS: [],
-
-
-  /* =========================
-     PORTFOLIOS
-     
-     INTENTIONALLY EMPTY.
-     ========================= */
 
   PORTFOLIOS: []
 
@@ -209,7 +73,6 @@ let selections =
     localStorage.getItem(SELECTION_KEY) || "{}"
   );
 
-
 let pendingCategory = null;
 let pendingSlot = null;
 
@@ -221,10 +84,7 @@ let pendingSlot = null;
 function getSelections(category) {
 
   if (!Array.isArray(selections[category])) {
-
-    selections[category] =
-      new Array(9).fill(null);
-
+    selections[category] = new Array(9).fill(null);
   }
 
   return selections[category];
@@ -243,7 +103,7 @@ function saveSelections() {
 
 
 /* =====================================================
-   CREATE THE 9 SLOTS
+   RENDER CATEGORY
    ===================================================== */
 
 function renderCategory(category) {
@@ -271,8 +131,6 @@ function renderCategory(category) {
     slot.className = "slot";
 
 
-    /* EMPTY */
-
     if (!platform) {
 
       slot.classList.add("plus");
@@ -287,12 +145,7 @@ function renderCategory(category) {
         () => openGallery(category, index)
       );
 
-    }
-
-
-    /* SELECTED */
-
-    else {
+    } else {
 
       slot.innerHTML = `
         <strong>${platform.name}</strong>
@@ -305,7 +158,6 @@ function renderCategory(category) {
       );
 
     }
-
 
     grid.appendChild(slot);
 
@@ -336,51 +188,27 @@ function openGallery(category, slotIndex) {
   pendingCategory = category;
   pendingSlot = slotIndex;
 
-
   const title =
-    document.getElementById(
-      "galleryTitle"
-    );
-
-
-  if (
-    category === "JOBS" ||
-    category === "PORTFOLIOS"
-  ) {
-
-    title.textContent =
-      `Submit ${category.toLowerCase()} listing`;
-
-  }
-
-  else {
-
-    title.textContent =
-      `Select a ${category.toLowerCase()} platform`;
-
-  }
-
+    document.getElementById("galleryTitle");
 
   const list =
-    document.getElementById(
-      "galleryList"
-    );
-
+    document.getElementById("galleryList");
 
   list.innerHTML = "";
 
 
-  /* =================================================
-     JOBS / PORTFOLIOS
-     
-     These currently go to Tally instead of a
-     software gallery.
-     ================================================= */
+  /* JOBS / PORTFOLIOS */
 
   if (
     category === "JOBS" ||
     category === "PORTFOLIOS"
   ) {
+
+    title.textContent =
+      category === "JOBS"
+        ? "Submit a job opportunity"
+        : "Submit a portfolio";
+
 
     const button =
       document.createElement("button");
@@ -388,90 +216,83 @@ function openGallery(category, slotIndex) {
     button.className =
       "gallery-item";
 
-
-    const label =
-      category === "JOBS"
-        ? "Submit a Job Opportunity"
-        : "Submit a Portfolio";
-
-
     button.innerHTML = `
-      <strong>${label}</strong>
+      <strong>
+        ${
+          category === "JOBS"
+            ? "Submit Job Opportunity"
+            : "Submit Portfolio"
+        }
+      </strong>
+
       <span>
-        Tap to open the submission form
+        Your submission will open inside MQ.
       </span>
     `;
 
-
     button.addEventListener(
       "click",
-      () => openSubmissionForm(category)
+      () => openTallyForm(category)
     );
-
 
     list.appendChild(button);
 
   }
 
 
-  /* =================================================
-     NORMAL PLATFORM GALLERY
-     ================================================= */
+  /* NORMAL GALLERY */
 
   else {
 
+    title.textContent =
+      `Select a ${category.toLowerCase()} platform`;
+
+
     const selected =
       getSelections(category);
-
 
     const alreadySelected =
       new Set(
         selected
           .filter(Boolean)
-          .map(
-            platform => platform.id
-          )
+          .map(platform => platform.id)
       );
 
 
-    gallery[category].forEach(
-      platform => {
+    gallery[category].forEach(platform => {
 
-        const button =
-          document.createElement("button");
+      const button =
+        document.createElement("button");
 
-        button.className =
-          "gallery-item";
-
-
-        const used =
-          alreadySelected.has(
-            platform.id
-          );
+      button.className =
+        "gallery-item";
 
 
-        button.innerHTML = `
-          <strong>${platform.name}</strong>
-          <span>
-            ${
-              used
-                ? "Already selected"
-                : "Tap to add"
-            }
-          </span>
-        `;
+      const used =
+        alreadySelected.has(platform.id);
 
 
-        button.addEventListener(
-          "click",
-          () => selectPlatform(platform)
-        );
+      button.innerHTML = `
+        <strong>${platform.name}</strong>
+        <span>
+          ${
+            used
+              ? "Already selected"
+              : "Tap to add"
+          }
+        </span>
+      `;
 
 
-        list.appendChild(button);
+      button.addEventListener(
+        "click",
+        () => selectPlatform(platform)
+      );
 
-      }
-    );
+
+      list.appendChild(button);
+
+    });
 
   }
 
@@ -484,10 +305,10 @@ function openGallery(category, slotIndex) {
 
 
 /* =====================================================
-   TALLY SUBMISSION
+   TALLY FORM INSIDE MQ
    ===================================================== */
 
-function openSubmissionForm(category) {
+function openTallyForm(category) {
 
   if (
     TALLY_FORM_URL.includes(
@@ -495,8 +316,10 @@ function openSubmissionForm(category) {
     )
   ) {
 
+    closeGallery();
+
     showToast(
-      "Tally form will be connected here."
+      "Add your Tally form link first."
     );
 
     return;
@@ -504,21 +327,59 @@ function openSubmissionForm(category) {
   }
 
 
-  const url =
-    `${TALLY_FORM_URL}?category=${encodeURIComponent(category)}`;
+  closeGallery();
 
 
-  window.open(
-    url,
-    "_blank",
-    "noopener,noreferrer"
+  document
+    .getElementById("homeView")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("iframeView")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("iframeTitle")
+    .textContent =
+    category === "JOBS"
+      ? "Submit Job Opportunity"
+      : "Submit Portfolio";
+
+
+  const frame =
+    document.getElementById(
+      "platformFrame"
+    );
+
+
+  /*
+     Tally accepts query parameters.
+     This lets the form know which
+     MQ category the user came from.
+  */
+
+  const separator =
+    TALLY_FORM_URL.includes("?")
+      ? "&"
+      : "?";
+
+
+  frame.src =
+    `${TALLY_FORM_URL}${separator}category=${encodeURIComponent(category)}`;
+
+
+  window.scrollTo(
+    0,
+    0
   );
 
 }
 
 
 /* =====================================================
-   SELECT PLATFORM
+   SELECT EXTERNAL PLATFORM
    ===================================================== */
 
 function selectPlatform(platform) {
@@ -532,9 +393,7 @@ function selectPlatform(platform) {
 
 
   const selected =
-    getSelections(
-      pendingCategory
-    );
+    getSelections(pendingCategory);
 
 
   const duplicate =
@@ -559,17 +418,13 @@ function selectPlatform(platform) {
   selected[pendingSlot] =
     platform;
 
-
   saveSelections();
 
-
   closeGallery();
-
 
   renderCategory(
     pendingCategory
   );
-
 
   showToast(
     `${platform.name} added`
@@ -597,10 +452,8 @@ document
         const category =
           button.dataset.more;
 
-
         const selected =
           getSelections(category);
-
 
         const firstEmpty =
           selected.findIndex(
@@ -608,27 +461,11 @@ document
           );
 
 
-        /*
-           For Jobs and Portfolios,
-           the first empty + remains the
-           entry point for Tally.
-        */
-
-        if (firstEmpty === -1) {
-
-          openGallery(
-            category,
-            0
-          );
-
-          return;
-
-        }
-
-
         openGallery(
           category,
-          firstEmpty
+          firstEmpty === -1
+            ? 0
+            : firstEmpty
         );
 
       }
@@ -644,18 +481,14 @@ document
 function closeGallery() {
 
   document
-    .getElementById(
-      "galleryOverlay"
-    )
+    .getElementById("galleryOverlay")
     .classList.add("hidden");
 
 }
 
 
 document
-  .getElementById(
-    "galleryClose"
-  )
+  .getElementById("galleryClose")
   .addEventListener(
     "click",
     closeGallery
@@ -663,9 +496,7 @@ document
 
 
 document
-  .getElementById(
-    "galleryOverlay"
-  )
+  .getElementById("galleryOverlay")
   .addEventListener(
     "click",
     event => {
@@ -684,29 +515,23 @@ document
 
 
 /* =====================================================
-   OPEN PLATFORM
+   OPEN EXTERNAL PLATFORM
    ===================================================== */
 
 function openPlatform(platform) {
 
   document
-    .getElementById(
-      "homeView"
-    )
+    .getElementById("homeView")
     .classList.add("hidden");
 
 
   document
-    .getElementById(
-      "iframeView"
-    )
+    .getElementById("iframeView")
     .classList.remove("hidden");
 
 
   document
-    .getElementById(
-      "iframeTitle"
-    )
+    .getElementById("iframeTitle")
     .textContent =
     platform.name;
 
@@ -730,7 +555,7 @@ function openPlatform(platform) {
 
 
 /* =====================================================
-   BACK
+   BACK BUTTON
    ===================================================== */
 
 function closePlatform() {
@@ -740,22 +565,17 @@ function closePlatform() {
       "platformFrame"
     );
 
-
   frame.src =
     "about:blank";
 
 
   document
-    .getElementById(
-      "iframeView"
-    )
+    .getElementById("iframeView")
     .classList.add("hidden");
 
 
   document
-    .getElementById(
-      "homeView"
-    )
+    .getElementById("homeView")
     .classList.remove("hidden");
 
 
@@ -768,9 +588,7 @@ function closePlatform() {
 
 
 document
-  .getElementById(
-    "backBtn"
-  )
+  .getElementById("backBtn")
   .addEventListener(
     "click",
     closePlatform
@@ -782,9 +600,7 @@ document
    ===================================================== */
 
 document
-  .getElementById(
-    "homeLogo"
-  )
+  .getElementById("homeLogo")
   .addEventListener(
     "click",
     closePlatform
@@ -796,39 +612,25 @@ document
    ===================================================== */
 
 const sideMenu =
-  document.getElementById(
-    "sideMenu"
-  );
+  document.getElementById("sideMenu");
 
 
 document
-  .getElementById(
-    "menuBtn"
-  )
+  .getElementById("menuBtn")
   .addEventListener(
     "click",
     () => {
-
-      sideMenu.classList.add(
-        "open"
-      );
-
+      sideMenu.classList.add("open");
     }
   );
 
 
 document
-  .getElementById(
-    "menuClose"
-  )
+  .getElementById("menuClose")
   .addEventListener(
     "click",
     () => {
-
-      sideMenu.classList.remove(
-        "open"
-      );
-
+      sideMenu.classList.remove("open");
     }
   );
 
@@ -838,9 +640,7 @@ document
    ===================================================== */
 
 document
-  .getElementById(
-    "aboutGthBtn"
-  )
+  .getElementById("aboutGthBtn")
   .addEventListener(
     "click",
     () => {
@@ -858,49 +658,31 @@ document
    ===================================================== */
 
 document
-  .getElementById(
-    "discoverBtn"
-  )
+  .getElementById("discoverBtn")
   .addEventListener(
     "click",
     () => {
-
-      showToast(
-        "Discover"
-      );
-
+      showToast("Discover");
     }
   );
 
 
 document
-  .getElementById(
-    "supportBtn"
-  )
+  .getElementById("supportBtn")
   .addEventListener(
     "click",
     () => {
-
-      showToast(
-        "Customer Service"
-      );
-
+      showToast("Customer Service");
     }
   );
 
 
 document
-  .getElementById(
-    "telegramBtn"
-  )
+  .getElementById("telegramBtn")
   .addEventListener(
     "click",
     () => {
-
-      showToast(
-        "Telegram"
-      );
-
+      showToast("Telegram");
     }
   );
 
@@ -910,54 +692,38 @@ document
    ===================================================== */
 
 const emailGate =
-  document.getElementById(
-    "emailGate"
-  );
-
+  document.getElementById("emailGate");
 
 const emailForm =
-  document.getElementById(
-    "emailForm"
-  );
-
+  document.getElementById("emailForm");
 
 const emailInput =
-  document.getElementById(
-    "emailInput"
-  );
+  document.getElementById("emailInput");
 
 
 function closeEmailGate() {
 
-  emailGate.classList.add(
-    "hidden"
-  );
+  emailGate.classList.add("hidden");
 
 }
 
 
 function openEmailGate() {
 
-  emailGate.classList.remove(
-    "hidden"
-  );
+  emailGate.classList.remove("hidden");
 
 }
 
 
 const savedEmail =
-  localStorage.getItem(
-    EMAIL_KEY
-  );
+  localStorage.getItem(EMAIL_KEY);
 
 
 if (savedEmail) {
 
   closeEmailGate();
 
-}
-
-else {
+} else {
 
   openEmailGate();
 
@@ -973,7 +739,6 @@ emailForm.addEventListener(
   event => {
 
     event.preventDefault();
-
 
     const email =
       emailInput.value.trim();
@@ -997,21 +762,6 @@ emailForm.addEventListener(
     closeEmailGate();
 
 
-    if (
-      !TALLY_FORM_URL.includes(
-        "REPLACE_WITH_YOUR_TALLY_FORM"
-      )
-    ) {
-
-      window.open(
-        TALLY_FORM_URL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-    }
-
-
     showToast(
       "Welcome to MQ"
     );
@@ -1027,18 +777,14 @@ emailForm.addEventListener(
 function showToast(message) {
 
   const toast =
-    document.getElementById(
-      "toast"
-    );
+    document.getElementById("toast");
 
 
   toast.textContent =
     message;
 
 
-  toast.classList.add(
-    "show"
-  );
+  toast.classList.add("show");
 
 
   clearTimeout(
@@ -1049,11 +795,7 @@ function showToast(message) {
   window.mqToastTimer =
     setTimeout(
       () => {
-
-        toast.classList.remove(
-          "show"
-        );
-
+        toast.classList.remove("show");
       },
       2200
     );
