@@ -481,6 +481,163 @@ function openTallyForm(category) {
 }
 
 /* =====================================================
+   OPEN APPROVED LISTING
+   ===================================================== */
+
+function openListing(listing, category) {
+
+  if (!listing) {
+    showToast("Listing unavailable.");
+    return;
+  }
+
+  const title =
+    listing.title ||
+    listing.name ||
+    listing.company ||
+    "Listing";
+
+  const image =
+    listing.image ||
+    listing.logo ||
+    "";
+
+  const details = [
+    listing.company,
+    listing.profession,
+    listing.location,
+    listing.workType,
+    listing.description,
+    listing.bio,
+    listing.skills,
+    listing.services,
+    listing.salary,
+    listing.contact
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  const frame =
+    document.getElementById("platformFrame");
+
+  const iframeView =
+    document.getElementById("iframeView");
+
+  const homeView =
+    document.getElementById("homeView");
+
+  homeView.classList.add("hidden");
+  iframeView.classList.remove("hidden");
+
+  document
+    .getElementById("iframeTitle")
+    .textContent = title;
+
+  /*
+   * Approved listings are currently displayed
+   * through a simple MQ-generated page.
+   */
+
+  const imageHTML =
+    image
+      ? `
+        <img
+          src="${image}"
+          alt="${title}"
+          style="
+            width:100%;
+            max-width:320px;
+            border-radius:20px;
+            display:block;
+            margin:0 auto 24px;
+          "
+        >
+      `
+      : "";
+
+  const categoryLabel =
+    category === "JOBS"
+      ? "JOB OPPORTUNITY"
+      : "PORTFOLIO";
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1.0"
+      >
+      <title>${title}</title>
+
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          padding: 24px;
+          font-family: Arial, sans-serif;
+          background: #f7f7f7;
+          color: #111;
+        }
+
+        .listing {
+          max-width: 650px;
+          margin: 0 auto;
+        }
+
+        .label {
+          font-size: 12px;
+          letter-spacing: 2px;
+          font-weight: 700;
+          opacity: .6;
+          margin-bottom: 10px;
+        }
+
+        h1 {
+          margin: 0 0 20px;
+          font-size: 30px;
+        }
+
+        .details {
+          white-space: pre-line;
+          line-height: 1.7;
+          font-size: 16px;
+        }
+      </style>
+    </head>
+
+    <body>
+
+      <main class="listing">
+
+        <div class="label">
+          ${categoryLabel}
+        </div>
+
+        ${imageHTML}
+
+        <h1>${title}</h1>
+
+        <div class="details">
+          ${details || "No additional details available."}
+        </div>
+
+      </main>
+
+    </body>
+    </html>
+  `;
+
+  frame.srcdoc = html;
+
+  window.scrollTo(0, 0);
+}
+
+/* =====================================================
    SELECT PLATFORM
    ===================================================== */
 
