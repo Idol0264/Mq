@@ -1,5 +1,7 @@
-const TALLY_FORM_URL = "https://tally.so/r/REPLACE_WITH_YOUR_TALLY_FORM";
-
+const TALLY_FORMS = {
+  JOBS: "https://tally.so/r/VLry4E",
+  PORTFOLIOS: "https://tally.so/r/Xxjy2d"
+};
 const EMAIL_KEY = "mq_user_email";
 const SELECTION_KEY = "mq_platform_selections";
 
