@@ -13,6 +13,15 @@ const categories = [
   "PORTFOLIOS"
 ];
 
+const approvedJobs =
+  Array.isArray(window.MQ_JOBS)
+    ? window.MQ_JOBS
+    : [];
+
+const approvedPortfolios =
+  Array.isArray(window.MQ_PORTFOLIOS)
+    ? window.MQ_PORTFOLIOS
+    : [];
 
 /* =====================================================
    GTS GALLERY
