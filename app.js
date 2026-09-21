@@ -163,6 +163,7 @@ function renderCategory(category) {
         const image =
           listing.image ||
           listing.logo ||
+          "";
           
         const displayTitle =
           listing.title ||
