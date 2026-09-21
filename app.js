@@ -256,7 +256,8 @@ let pendingSlot = null;
 function getSelections(category) {
 
   if (!Array.isArray(selections[category])) {
-    selections[category] = new Array(9).fill(null);
+    selections[category] =
+      new Array(9).fill(null);
   }
 
   return selections[category];
@@ -272,6 +273,76 @@ function saveSelections() {
 }
 
 /* =====================================================
+   PLATFORM LOGO
+   ===================================================== */
+
+function platformLogoHTML(platform, size = "slot") {
+
+  if (!platform || !platform.url) {
+    return "";
+  }
+
+  let hostname = "";
+
+  try {
+
+    hostname =
+      new URL(platform.url)
+        .hostname
+        .replace(/^www\./, "");
+
+  } catch {
+
+    hostname = "";
+
+  }
+
+  const logoUrl =
+    hostname
+      ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=128`
+      : "";
+
+  const initials =
+    String(platform.name || "MQ")
+      .replace(/[^A-Za-z0-9 ]/g, "")
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(word => word[0])
+      .join("")
+      .toUpperCase() || "MQ";
+
+  return `
+    <span class="platform-logo platform-logo-${size}">
+
+      ${
+        logoUrl
+          ? `
+            <img
+              src="${logoUrl}"
+              alt="${platform.name} logo"
+              loading="lazy"
+              onerror="
+                this.style.display='none';
+                this.nextElementSibling.style.display='grid';
+              "
+            >
+          `
+          : ""
+      }
+
+      <span
+        class="platform-logo-fallback"
+        style="display:${logoUrl ? "none" : "grid"}"
+      >
+        ${initials}
+      </span>
+
+    </span>
+  `;
+}
+
+/* =====================================================
    RENDER CATEGORY
    ===================================================== */
 
@@ -282,12 +353,18 @@ function renderCategory(category) {
       `.platform-grid[data-category="${category}"]`
     );
 
-  if (!grid) return;
+  if (!grid) {
+    return;
+  }
 
   const selected =
     getSelections(category);
 
   grid.innerHTML = "";
+
+  /* ===================================================
+     JOBS / PORTFOLIOS
+     =================================================== */
 
   if (
     category === "JOBS" ||
@@ -299,7 +376,11 @@ function renderCategory(category) {
         ? approvedJobs
         : approvedPortfolios;
 
-    for (let index = 0; index < 9; index++) {
+    for (
+      let index = 0;
+      index < 9;
+      index++
+    ) {
 
       const listing =
         approved[index];
@@ -311,7 +392,9 @@ function renderCategory(category) {
 
       if (listing) {
 
-        slot.classList.add("listing-slot");
+        slot.classList.add(
+          "listing-slot"
+        );
 
         const image =
           listing.image ||
@@ -334,26 +417,40 @@ function renderCategory(category) {
         slot.innerHTML = `
           ${
             image
-              ? `<img
-                   src="${image}"
-                   alt="${displayTitle}"
-                   class="listing-image"
-                 >`
+              ? `
+                <img
+                  src="${image}"
+                  alt="${displayTitle}"
+                  class="listing-image"
+                >
+              `
               : `
                 <span class="listing-placeholder">
-                  ${category === "JOBS" ? "JOB" : "PORTFOLIO"}
+                  ${
+                    category === "JOBS"
+                      ? "JOB"
+                      : "PORTFOLIO"
+                  }
                 </span>
               `
           }
 
-          <strong>${displayTitle}</strong>
+          <strong>
+            ${displayTitle}
+          </strong>
 
-          <small>${displaySubtitle}</small>
+          <small>
+            ${displaySubtitle}
+          </small>
         `;
 
         slot.addEventListener(
           "click",
-          () => openListing(listing, category)
+          () =>
+            openListing(
+              listing,
+              category
+            )
         );
 
       } else {
@@ -361,7 +458,10 @@ function renderCategory(category) {
         slot.classList.add("plus");
 
         slot.innerHTML = `
-          <span class="plus-symbol">+</span>
+          <span class="plus-symbol">
+            +
+          </span>
+
           <small>
             ${
               category === "JOBS"
@@ -373,7 +473,11 @@ function renderCategory(category) {
 
         slot.addEventListener(
           "click",
-          () => openGallery(category, index)
+          () =>
+            openGallery(
+              category,
+              index
+            )
         );
 
       }
@@ -385,7 +489,15 @@ function renderCategory(category) {
     return;
   }
 
-  for (let index = 0; index < 9; index++) {
+  /* ===================================================
+     BET / BROKERS / BANKS
+     =================================================== */
+
+  for (
+    let index = 0;
+    index < 9;
+    index++
+  ) {
 
     const platform =
       selected[index];
@@ -400,25 +512,42 @@ function renderCategory(category) {
       slot.classList.add("plus");
 
       slot.innerHTML = `
-        <span class="plus-symbol">+</span>
-        <small>Add platform</small>
+        <span class="plus-symbol">
+          +
+        </span>
+
+        <small>
+          Add platform
+        </small>
       `;
 
       slot.addEventListener(
         "click",
-        () => openGallery(category, index)
+        () =>
+          openGallery(
+            category,
+            index
+          )
       );
 
     } else {
 
       slot.innerHTML = `
-        <strong>${platform.name}</strong>
-        <small>Tap to open</small>
+        ${platformLogoHTML(platform, "slot")}
+
+        <strong>
+          ${platform.name}
+        </strong>
+
+        <small>
+          Tap to open
+        </small>
       `;
 
       slot.addEventListener(
         "click",
-        () => openPlatform(platform)
+        () =>
+          openPlatform(platform)
       );
 
     }
@@ -436,7 +565,8 @@ function renderCategory(category) {
 function renderAllCategories() {
 
   categories.forEach(
-    category => renderCategory(category)
+    category =>
+      renderCategory(category)
   );
 
 }
@@ -445,18 +575,32 @@ function renderAllCategories() {
    OPEN GALLERY
    ===================================================== */
 
-function openGallery(category, slotIndex) {
+function openGallery(
+  category,
+  slotIndex
+) {
 
-  pendingCategory = category;
-  pendingSlot = slotIndex;
+  pendingCategory =
+    category;
+
+  pendingSlot =
+    slotIndex;
 
   const title =
-    document.getElementById("galleryTitle");
+    document.getElementById(
+      "galleryTitle"
+    );
 
   const list =
-    document.getElementById("galleryList");
+    document.getElementById(
+      "galleryList"
+    );
 
   list.innerHTML = "";
+
+  /* ===================================================
+     JOBS / PORTFOLIOS
+     =================================================== */
 
   if (
     category === "JOBS" ||
@@ -469,9 +613,12 @@ function openGallery(category, slotIndex) {
         : "Submit a portfolio";
 
     const button =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
-    button.className = "gallery-item";
+    button.className =
+      "gallery-item";
 
     button.innerHTML = `
       <strong>
@@ -489,12 +636,19 @@ function openGallery(category, slotIndex) {
 
     button.addEventListener(
       "click",
-      () => openTallyForm(category)
+      () =>
+        openTallyForm(category)
     );
 
     list.appendChild(button);
 
-  } else {
+  }
+
+  /* ===================================================
+     BET / BROKERS / BANKS
+     =================================================== */
+
+  else {
 
     title.textContent =
       `Select a ${category.toLowerCase()} platform`;
@@ -506,45 +660,72 @@ function openGallery(category, slotIndex) {
       new Set(
         selected
           .filter(Boolean)
-          .map(platform => platform.id)
+          .map(
+            platform =>
+              platform.id
+          )
       );
 
-    gallery[category].forEach(platform => {
+    gallery[category]
+      .forEach(platform => {
 
-      const button =
-        document.createElement("button");
+        const button =
+          document.createElement(
+            "button"
+          );
 
-      button.className =
-        "gallery-item";
+        button.className =
+          "gallery-item";
 
-      const used =
-        alreadySelected.has(platform.id);
+        const used =
+          alreadySelected.has(
+            platform.id
+          );
 
-      button.innerHTML = `
-        <strong>${platform.name}</strong>
-        <span>
-          ${
-            used
-              ? "Already selected"
-              : "Tap to add"
-          }
-        </span>
-      `;
+        button.innerHTML = `
+          ${platformLogoHTML(platform, "gallery")}
 
-      button.addEventListener(
-        "click",
-        () => selectPlatform(platform)
-      );
+          <strong>
+            ${platform.name}
+          </strong>
 
-      list.appendChild(button);
+          <span>
+            ${
+              used
+                ? "Already selected"
+                : "Tap to add"
+            }
+          </span>
+        `;
 
-    });
+        if (used) {
+
+          button.disabled = true;
+
+        } else {
+
+          button.addEventListener(
+            "click",
+            () =>
+              selectPlatform(
+                platform
+              )
+          );
+
+        }
+
+        list.appendChild(button);
+
+      });
 
   }
 
   document
-    .getElementById("galleryOverlay")
+    .getElementById(
+      "galleryOverlay"
+    )
     .classList.remove("hidden");
+
 }
 
 /* =====================================================
@@ -554,121 +735,248 @@ function openGallery(category, slotIndex) {
 function openDiscover() {
 
   const title =
-    document.getElementById("galleryTitle");
+    document.getElementById(
+      "galleryTitle"
+    );
 
   const list =
-    document.getElementById("galleryList");
+    document.getElementById(
+      "galleryList"
+    );
 
   title.textContent =
     "Discover Platforms";
 
   list.innerHTML = "";
 
-  discoverPlatforms.forEach(platform => {
+  discoverPlatforms
+    .forEach(platform => {
 
-    const card =
-      document.createElement("div");
+      const card =
+        document.createElement(
+          "div"
+        );
 
-    card.className =
-      "discover-item";
+      card.className =
+        "discover-item";
 
-    /*
-      Use the platform's website favicon
-      as its industry/platform logo.
-    */
+      let hostname = "";
 
-    const hostname =
-      new URL(platform.url)
-        .hostname
-        .replace(/^www\./, "");
+      try {
 
-    const logoUrl =
-      `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=128`;
+        hostname =
+          new URL(platform.url)
+            .hostname
+            .replace(/^www\./, "");
 
-    /*
-      Fallback initials if the logo
-      cannot be loaded.
-    */
+      } catch {
 
-    const initials =
-      platform.name
-        .replace(/[^A-Za-z0-9 ]/g, "")
-        .split(" ")
-        .filter(Boolean)
-        .slice(0, 2)
-        .map(word => word[0])
-        .join("")
-        .toUpperCase();
+        hostname = "";
 
-    card.innerHTML = `
+      }
 
-      <div class="discover-top">
+      const logoUrl =
+        hostname
+          ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=128`
+          : "";
 
-        <div class="discover-logo">
+      const initials =
+        String(
+          platform.name || "MQ"
+        )
+          .replace(
+            /[^A-Za-z0-9 ]/g,
+            ""
+          )
+          .split(" ")
+          .filter(Boolean)
+          .slice(0, 2)
+          .map(
+            word =>
+              word[0]
+          )
+          .join("")
+          .toUpperCase() || "MQ";
 
-          <img
-            src="${logoUrl}"
-            alt="${platform.name} logo"
-            loading="lazy"
-            onerror="
-              this.style.display='none';
-              this.nextElementSibling.style.display='block';
-            "
-          >
+      card.innerHTML = `
+        <div class="discover-top">
 
-          <span
-            class="discover-logo-fallback"
-            style="display:none"
-            aria-hidden="true"
-          >
-            ${initials}
-          </span>
+          <div class="discover-logo">
+
+            ${
+              logoUrl
+                ? `
+                  <img
+                    src="${logoUrl}"
+                    alt="${platform.name} logo"
+                    loading="lazy"
+                    onerror="
+                      this.style.display='none';
+                      this.nextElementSibling.style.display='grid';
+                    "
+                  >
+                `
+                : ""
+            }
+
+            <span
+              class="discover-logo-fallback"
+              style="display:${logoUrl ? "none" : "grid"}"
+              aria-hidden="true"
+            >
+              ${initials}
+            </span>
+
+          </div>
+
+          <div class="discover-title">
+
+            <strong>
+              ${platform.name}
+            </strong>
+
+            <span class="discover-category">
+              ${platform.category}
+            </span>
+
+          </div>
 
         </div>
 
-        <div class="discover-title">
+        <p>
+          ${platform.description}
+        </p>
 
-          <strong>
-            ${platform.name}
-          </strong>
+        <button
+          class="discover-add"
+          type="button"
+        >
+          Add to ${platform.category}
+        </button>
+      `;
 
-          <span class="discover-category">
-            ${platform.category}
-          </span>
+      card
+        .querySelector(
+          ".discover-add"
+        )
+        .addEventListener(
+          "click",
+          event => {
 
-        </div>
+            event.stopPropagation();
 
-      </div>
+            discoverAdd(
+              platform,
+              card
+            );
 
-      <p>
-        ${platform.description}
-      </p>
+          }
+        );
 
-      <button
-        class="discover-add"
-        type="button"
-      >
-        Add to ${platform.category}
-      </button>
+      list.appendChild(card);
 
-    `;
-
-    card
-      .querySelector(".discover-add")
-      .addEventListener(
-        "click",
-        () => discoverAdd(platform)
-      );
-
-    list.appendChild(card);
-
-  });
+    });
 
   document
-    .getElementById("galleryOverlay")
-    .classList.remove("hidden");
+    .getElementById(
+      "galleryOverlay"
+    )
+    .classList.remove(
+      "hidden"
+    );
+
 }
 
+/* =====================================================
+   DISCOVER ADD
+   ===================================================== */
+
+function discoverAdd(
+  platform,
+  card = null
+) {
+
+  if (
+    !platform ||
+    !platform.category
+  ) {
+
+    showToast(
+      "Platform unavailable."
+    );
+
+    return;
+  }
+
+  const category =
+    platform.category;
+
+  const selected =
+    getSelections(category);
+
+  /* Prevent duplicate */
+
+  const duplicate =
+    selected.some(
+      item =>
+        item &&
+        item.id === platform.id
+    );
+
+  if (duplicate) {
+
+    showToast(
+      `${platform.name} is already selected`
+    );
+
+    return;
+  }
+
+  /* Find first empty slot */
+
+  const firstEmpty =
+    selected.findIndex(
+      item => !item
+    );
+
+  if (firstEmpty === -1) {
+
+    showToast(
+      `${category} is full`
+    );
+
+    return;
+  }
+
+  /* Add platform */
+
+  selected[firstEmpty] =
+    platform;
+
+  saveSelections();
+
+  /*
+    Close Discover after
+    successful addition.
+  */
+
+  closeGallery();
+
+  /*
+    Re-render the category
+    so the logo appears
+    immediately in the slot.
+  */
+
+  renderCategory(
+    category
+  );
+
+  showToast(
+    `${platform.name} added to ${category}`
+  );
+
+}
 
 /* =====================================================
    TALLY
@@ -693,22 +1001,34 @@ function openTallyForm(category) {
   closeGallery();
 
   document
-    .getElementById("homeView")
-    .classList.add("hidden");
+    .getElementById(
+      "homeView"
+    )
+    .classList.add(
+      "hidden"
+    );
 
   document
-    .getElementById("iframeView")
-    .classList.remove("hidden");
+    .getElementById(
+      "iframeView"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
   document
-    .getElementById("iframeTitle")
+    .getElementById(
+      "iframeTitle"
+    )
     .textContent =
     category === "JOBS"
       ? "Submit Job Opportunity"
       : "Submit Portfolio";
 
   const frame =
-    document.getElementById("platformFrame");
+    document.getElementById(
+      "platformFrame"
+    );
 
   const separator =
     tallyUrl.includes("?")
@@ -720,14 +1040,21 @@ function openTallyForm(category) {
 
   frame.srcdoc = "";
 
-  window.scrollTo(0, 0);
+  window.scrollTo(
+    0,
+    0
+  );
+
 }
 
 /* =====================================================
    APPROVED LISTING
    ===================================================== */
 
-function openListing(listing, category) {
+function openListing(
+  listing,
+  category
+) {
 
   if (!listing) {
 
@@ -765,19 +1092,32 @@ function openListing(listing, category) {
     .join("\n\n");
 
   const frame =
-    document.getElementById("platformFrame");
+    document.getElementById(
+      "platformFrame"
+    );
 
   document
-    .getElementById("homeView")
-    .classList.add("hidden");
+    .getElementById(
+      "homeView"
+    )
+    .classList.add(
+      "hidden"
+    );
 
   document
-    .getElementById("iframeView")
-    .classList.remove("hidden");
+    .getElementById(
+      "iframeView"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
   document
-    .getElementById("iframeTitle")
-    .textContent = title;
+    .getElementById(
+      "iframeTitle"
+    )
+    .textContent =
+    title;
 
   const imageHTML =
     image
@@ -803,16 +1143,24 @@ function openListing(listing, category) {
 
   frame.srcdoc = `
     <!DOCTYPE html>
+
     <html lang="en">
+
     <head>
+
       <meta charset="UTF-8">
+
       <meta
         name="viewport"
         content="width=device-width,initial-scale=1.0"
       >
-      <title>${title}</title>
+
+      <title>
+        ${title}
+      </title>
 
       <style>
+
         * {
           box-sizing: border-box;
         }
@@ -848,7 +1196,9 @@ function openListing(listing, category) {
           line-height: 1.7;
           font-size: 16px;
         }
+
       </style>
+
     </head>
 
     <body>
@@ -861,36 +1211,57 @@ function openListing(listing, category) {
 
         ${imageHTML}
 
-        <h1>${title}</h1>
+        <h1>
+          ${title}
+        </h1>
 
         <div class="details">
-          ${details || "No additional details available."}
+          ${
+            details ||
+            "No additional details available."
+          }
         </div>
 
       </main>
 
     </body>
+
     </html>
   `;
 
-  window.scrollTo(0, 0);
+  window.scrollTo(
+    0,
+    0
+  );
+
 }
 
 /* =====================================================
-   SELECT PLATFORM
+   SELECT PLATFORM FROM +
    ===================================================== */
 
-function selectPlatform(platform) {
+function selectPlatform(
+  platform
+) {
 
   if (
     pendingCategory === null ||
     pendingSlot === null
   ) {
+
     return;
   }
 
+  const category =
+    pendingCategory;
+
+  const slotIndex =
+    pendingSlot;
+
   const selected =
-    getSelections(pendingCategory);
+    getSelections(category);
+
+  /* Prevent duplicate */
 
   const duplicate =
     selected.some(
@@ -908,7 +1279,22 @@ function selectPlatform(platform) {
     return;
   }
 
-  selected[pendingSlot] =
+  /* Make sure selected slot is still empty */
+
+  if (
+    selected[slotIndex]
+  ) {
+
+    showToast(
+      "That slot is already occupied."
+    );
+
+    return;
+  }
+
+  /* Add platform */
+
+  selected[slotIndex] =
     platform;
 
   saveSelections();
@@ -916,15 +1302,19 @@ function selectPlatform(platform) {
   closeGallery();
 
   renderCategory(
-    pendingCategory
+    category
   );
 
   showToast(
     `${platform.name} added`
   );
 
-  pendingCategory = null;
-  pendingSlot = null;
+  pendingCategory =
+    null;
+
+  pendingSlot =
+    null;
+
 }
 
 /* =====================================================
@@ -932,7 +1322,9 @@ function selectPlatform(platform) {
    ===================================================== */
 
 document
-  .querySelectorAll("[data-more]")
+  .querySelectorAll(
+    "[data-more]"
+  )
   .forEach(button => {
 
     button.addEventListener(
@@ -943,7 +1335,9 @@ document
           button.dataset.more;
 
         const selected =
-          getSelections(category);
+          getSelections(
+            category
+          );
 
         const firstEmpty =
           selected.findIndex(
@@ -969,20 +1363,28 @@ document
 function closeGallery() {
 
   document
-    .getElementById("galleryOverlay")
-    .classList.add("hidden");
+    .getElementById(
+      "galleryOverlay"
+    )
+    .classList.add(
+      "hidden"
+    );
 
 }
 
 document
-  .getElementById("galleryClose")
+  .getElementById(
+    "galleryClose"
+  )
   .addEventListener(
     "click",
     closeGallery
   );
 
 document
-  .getElementById("galleryOverlay")
+  .getElementById(
+    "galleryOverlay"
+  )
   .addEventListener(
     "click",
     event => {
@@ -991,7 +1393,9 @@ document
         event.target.id ===
         "galleryOverlay"
       ) {
+
         closeGallery();
+
       }
 
     }
@@ -1001,7 +1405,9 @@ document
    EXTERNAL PLATFORM
    ===================================================== */
 
-function openPlatform(platform) {
+function openPlatform(
+  platform
+) {
 
   if (
     !platform ||
@@ -1017,6 +1423,7 @@ function openPlatform(platform) {
 
   window.location.href =
     platform.url;
+
 }
 
 /* =====================================================
@@ -1037,21 +1444,32 @@ function closePlatform() {
     "";
 
   document
-    .getElementById("iframeView")
-    .classList.add("hidden");
+    .getElementById(
+      "iframeView"
+    )
+    .classList.add(
+      "hidden"
+    );
 
   document
-    .getElementById("homeView")
-    .classList.remove("hidden");
+    .getElementById(
+      "homeView"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
   window.scrollTo(
     0,
     0
   );
+
 }
 
 document
-  .getElementById("backBtn")
+  .getElementById(
+    "backBtn"
+  )
   .addEventListener(
     "click",
     closePlatform
@@ -1062,7 +1480,9 @@ document
    ===================================================== */
 
 document
-  .getElementById("homeLogo")
+  .getElementById(
+    "homeLogo"
+  )
   .addEventListener(
     "click",
     closePlatform
@@ -1078,20 +1498,32 @@ const sideMenu =
   );
 
 document
-  .getElementById("menuBtn")
+  .getElementById(
+    "menuBtn"
+  )
   .addEventListener(
     "click",
     () => {
-      sideMenu.classList.add("open");
+
+      sideMenu.classList.add(
+        "open"
+      );
+
     }
   );
 
 document
-  .getElementById("menuClose")
+  .getElementById(
+    "menuClose"
+  )
   .addEventListener(
     "click",
     () => {
-      sideMenu.classList.remove("open");
+
+      sideMenu.classList.remove(
+        "open"
+      );
+
     }
   );
 
@@ -1100,7 +1532,9 @@ document
    ===================================================== */
 
 document
-  .getElementById("aboutGthBtn")
+  .getElementById(
+    "aboutGthBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -1109,51 +1543,81 @@ document
         "God’stime Holdings (GTH)"
       );
 
+      sideMenu.classList.remove(
+        "open"
+      );
+
     }
   );
 
 /* =====================================================
-   HEADER BUTTONS
+   HEADER — DISCOVER
    ===================================================== */
 
 document
-  .getElementById("discoverBtn")
+  .getElementById(
+    "discoverBtn"
+  )
   .addEventListener(
     "click",
     openDiscover
   );
 
+/* =====================================================
+   HEADER — TELEGRAM
+   ===================================================== */
+
 document
-  .getElementById("supportBtn")
+  .getElementById(
+    "telegramBtn"
+  )
   .addEventListener(
     "click",
     () => {
 
-      if (CUSTOMER_SERVICE_URL) {
+      if (
+        TELEGRAM_URL
+      ) {
+
         window.location.href =
-          CUSTOMER_SERVICE_URL;
+          TELEGRAM_URL;
+
       } else {
+
         showToast(
-          "Customer Service link not set yet."
+          "Telegram link not set yet."
         );
+
       }
 
     }
   );
 
+/* =====================================================
+   HEADER — CUSTOMER SERVICE
+   ===================================================== */
+
 document
-  .getElementById("telegramBtn")
+  .getElementById(
+    "supportBtn"
+  )
   .addEventListener(
     "click",
     () => {
 
-      if (TELEGRAM_URL) {
+      if (
+        CUSTOMER_SERVICE_URL
+      ) {
+
         window.location.href =
-          TELEGRAM_URL;
+          CUSTOMER_SERVICE_URL;
+
       } else {
+
         showToast(
-          "Telegram link not set yet."
+          "Customer Service link not set yet."
         );
+
       }
 
     }
@@ -1178,12 +1642,20 @@ const emailInput =
     "emailInput"
   );
 
-function closeEmailGate() {
-  emailGate.classList.add("hidden");
+function openEmailGate() {
+
+  emailGate.classList.remove(
+    "hidden"
+  );
+
 }
 
-function openEmailGate() {
-  emailGate.classList.remove("hidden");
+function closeEmailGate() {
+
+  emailGate.classList.add(
+    "hidden"
+  );
+
 }
 
 const savedEmail =
@@ -1192,9 +1664,13 @@ const savedEmail =
   );
 
 if (savedEmail) {
+
   closeEmailGate();
+
 } else {
+
   openEmailGate();
+
 }
 
 emailForm.addEventListener(
@@ -1231,7 +1707,9 @@ emailForm.addEventListener(
    TOAST
    ===================================================== */
 
-function showToast(message) {
+function showToast(
+  message
+) {
 
   const toast =
     document.getElementById(
@@ -1252,12 +1730,15 @@ function showToast(message) {
   window.mqToastTimer =
     setTimeout(
       () => {
+
         toast.classList.remove(
           "show"
         );
+
       },
       2200
     );
+
 }
 
 /* =====================================================
