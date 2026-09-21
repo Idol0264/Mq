@@ -572,21 +572,85 @@ function openDiscover() {
     card.className =
       "discover-item";
 
+    /*
+      Use the platform's website favicon
+      as its industry/platform logo.
+    */
+
+    const hostname =
+      new URL(platform.url)
+        .hostname
+        .replace(/^www\./, "");
+
+    const logoUrl =
+      `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=128`;
+
+    /*
+      Fallback initials if the logo
+      cannot be loaded.
+    */
+
+    const initials =
+      platform.name
+        .replace(/[^A-Za-z0-9 ]/g, "")
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(word => word[0])
+        .join("")
+        .toUpperCase();
+
     card.innerHTML = `
+
       <div class="discover-top">
-        <strong>${platform.name}</strong>
-        <span class="discover-category">
-          ${platform.category}
-        </span>
+
+        <div class="discover-logo">
+
+          <img
+            src="${logoUrl}"
+            alt="${platform.name} logo"
+            loading="lazy"
+            onerror="
+              this.style.display='none';
+              this.nextElementSibling.style.display='block';
+            "
+          >
+
+          <span
+            class="discover-logo-fallback"
+            style="display:none"
+            aria-hidden="true"
+          >
+            ${initials}
+          </span>
+
+        </div>
+
+        <div class="discover-title">
+
+          <strong>
+            ${platform.name}
+          </strong>
+
+          <span class="discover-category">
+            ${platform.category}
+          </span>
+
+        </div>
+
       </div>
 
       <p>
         ${platform.description}
       </p>
 
-      <button class="discover-add">
+      <button
+        class="discover-add"
+        type="button"
+      >
         Add to ${platform.category}
       </button>
+
     `;
 
     card
@@ -605,61 +669,6 @@ function openDiscover() {
     .classList.remove("hidden");
 }
 
-function discoverAdd(platform) {
-
-  const selected =
-    getSelections(platform.category);
-
-  const duplicate =
-    selected.some(
-      item =>
-        item &&
-        item.id === platform.id
-    );
-
-  if (duplicate) {
-
-    closeGallery();
-
-    showToast(
-      `${platform.name} is already added`
-    );
-
-    return;
-  }
-
-  const firstEmpty =
-    selected.findIndex(
-      item => !item
-    );
-
-  if (firstEmpty === -1) {
-
-    closeGallery();
-
-    showToast(
-      `${platform.category} is full`
-    );
-
-    return;
-  }
-
-  selected[firstEmpty] =
-    platform;
-
-  saveSelections();
-
-  closeGallery();
-
-  renderCategory(
-    platform.category
-  );
-
-  showToast(
-    `${platform.name} added to ${platform.category}`
-  );
-
-}
 
 /* =====================================================
    TALLY
