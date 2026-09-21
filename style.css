@@ -1465,3 +1465,64 @@ main {
     font-size: 12px;
   }
 }
+
+/* =========================
+   PLATFORM LOGOS
+========================= */
+
+.platform-logo {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  background: var(--solid);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+.platform-logo-slot {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 7px;
+  border-radius: 13px;
+}
+
+.platform-logo-gallery {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 9px;
+  border-radius: 13px;
+}
+
+.platform-logo img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.platform-logo-fallback {
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.gallery-item:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.gallery-item:disabled:hover {
+  transform: none;
+  border-color: var(--line);
+}
