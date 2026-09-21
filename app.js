@@ -984,67 +984,55 @@ function discoverAdd(
 
 function openTallyForm(category) {
 
-  const tallyUrl =
-    TALLY_FORMS[category];
+  const tallyUrl = TALLY_FORMS[category];
 
   if (!tallyUrl) {
-
     closeGallery();
-
-    showToast(
-      "Tally form unavailable."
-    );
-
+    showToast("Tally form unavailable.");
     return;
   }
 
   closeGallery();
 
-  document
-    .getElementById(
-      "homeView"
-    )
-    .classList.add(
-      "hidden"
-    );
+  const homeView =
+    document.getElementById("homeView");
 
-  document
-    .getElementById(
-      "iframeView"
-    )
-    .classList.remove(
-      "hidden"
-    );
+  const iframeView =
+    document.getElementById("iframeView");
 
-  document
-    .getElementById(
-      "iframeTitle"
-    )
-    .textContent =
+  const frame =
+    document.getElementById("platformFrame");
+
+  const title =
+    document.getElementById("iframeTitle");
+
+  homeView.classList.add("hidden");
+  iframeView.classList.remove("hidden");
+
+  title.textContent =
     category === "JOBS"
       ? "Submit Job Opportunity"
       : "Submit Portfolio";
 
-  const frame =
-    document.getElementById(
-      "platformFrame"
-    );
+  /*
+   * Reset the iframe before loading Tally.
+   */
+  frame.removeAttribute("srcdoc");
+  frame.src = "about:blank";
 
-  const separator =
-    tallyUrl.includes("?")
-      ? "&"
-      : "?";
+  setTimeout(() => {
 
-  frame.src =
-    `${tallyUrl}${separator}category=${encodeURIComponent(category)}`;
+    const separator =
+      tallyUrl.includes("?")
+        ? "&"
+        : "?";
 
-  frame.srcdoc = "";
+    frame.src =
+      `${tallyUrl}${separator}category=${encodeURIComponent(category)}&hideTitle=1`;
 
-  window.scrollTo(
-    0,
-    0
-  );
+  }, 50);
 
+  window.scrollTo(0, 0);
 }
 
 /* =====================================================
