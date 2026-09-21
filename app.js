@@ -1779,61 +1779,40 @@ document
   );
 
 /* =====================================================
-   HEADER — TELEGRAM
+   TELEGRAM
    ===================================================== */
 
 document
-  .getElementById(
-    "telegramBtn"
-  )
+  .getElementById("telegramBtn")
   .addEventListener(
     "click",
     () => {
 
-      if (
-        TELEGRAM_URL
-      ) {
-
-        window.location.href =
-          TELEGRAM_URL;
-
-      } else {
-
-        showToast(
-          "Telegram link not set yet."
-        );
-
-      }
+      window.open(
+        "https://t.me/gt_softwares",
+        "_blank",
+        "noopener,noreferrer"
+      );
 
     }
   );
 
+
 /* =====================================================
-   HEADER — CUSTOMER SERVICE
+   CUSTOMER SERVICE — WHATSAPP
    ===================================================== */
 
 document
-  .getElementById(
-    "supportBtn"
-  )
+  .getElementById("supportBtn")
   .addEventListener(
     "click",
     () => {
 
-      if (
-        CUSTOMER_SERVICE_URL
-      ) {
-
-        window.location.href =
-          CUSTOMER_SERVICE_URL;
-
-      } else {
-
-        showToast(
-          "Customer Service link not set yet."
-        );
-
-      }
+      window.open(
+        "https://wa.me/qr/VGCCQ6WUPR4SO1",
+        "_blank",
+        "noopener,noreferrer"
+      );
 
     }
   );
