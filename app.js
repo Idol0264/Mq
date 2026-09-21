@@ -163,6 +163,17 @@ function renderCategory(category) {
         const image =
           listing.image ||
           listing.logo ||
+          
+        const displayTitle =
+          listing.title ||
+          listing.name ||
+          listing.company ||
+          "Listing";
+        const displaySubtitle =
+          listing.subtitle ||
+          listing.profession ||
+          listing.category ||
+          listing.location ||
           "";
 
         slot.innerHTML = `
