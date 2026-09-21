@@ -2,8 +2,20 @@ const TALLY_FORMS = {
   JOBS: "https://tally.so/r/VLry4E",
   PORTFOLIOS: "https://tally.so/r/Xxjy2d"
 };
+
 const EMAIL_KEY = "mq_user_email";
 const SELECTION_KEY = "mq_platform_selections";
+
+/* =====================================================
+   HEADER DESTINATIONS
+   ===================================================== */
+
+const TELEGRAM_URL = "";
+const CUSTOMER_SERVICE_URL = "";
+
+/* =====================================================
+   CATEGORIES
+   ===================================================== */
 
 const categories = [
   "BET",
@@ -24,55 +36,206 @@ const approvedPortfolios =
     : [];
 
 /* =====================================================
-   GTS GALLERY
+   GALLERY
    ===================================================== */
 
 const gallery = {
 
   BET: [
-    { id: "bet9ja", name: "Bet9ja", url: "https://www.bet9ja.com" },
-    { id: "sportybet", name: "SportyBet", url: "https://www.sportybet.com" },
-    { id: "betpawa", name: "betPawa", url: "https://www.betpawa.com" },
-    { id: "betway", name: "Betway", url: "https://www.betway.com" },
-    { id: "betking", name: "BetKing", url: "https://www.betking.com" },
-    { id: "1xbet", name: "1xBet", url: "https://1xbet.com" },
-    { id: "bet365", name: "bet365", url: "https://www.bet365.com" },
-    { id: "betika", name: "Betika", url: "https://www.betika.com" },
-    { id: "betwinner", name: "Betwinner", url: "https://betwinner.com" }
+    {
+      id: "bet9ja",
+      name: "Bet9ja",
+      url: "https://www.bet9ja.com",
+      description: "A sports betting platform where users can place bets on sporting events."
+    },
+    {
+      id: "sportybet",
+      name: "SportyBet",
+      url: "https://www.sportybet.com",
+      description: "A sports betting platform offering betting markets across different sports."
+    },
+    {
+      id: "betpawa",
+      name: "betPawa",
+      url: "https://www.betpawa.com",
+      description: "A digital sports betting platform offering sports betting services."
+    },
+    {
+      id: "betway",
+      name: "Betway",
+      url: "https://www.betway.com",
+      description: "A sports betting platform with betting markets for multiple sports."
+    },
+    {
+      id: "betking",
+      name: "BetKing",
+      url: "https://www.betking.com",
+      description: "A sports betting platform providing betting markets and related services."
+    },
+    {
+      id: "1xbet",
+      name: "1xBet",
+      url: "https://1xbet.com",
+      description: "An online betting platform offering sports betting and other gaming services."
+    },
+    {
+      id: "bet365",
+      name: "bet365",
+      url: "https://www.bet365.com",
+      description: "An online sports betting platform with a wide range of sporting markets."
+    },
+    {
+      id: "betika",
+      name: "Betika",
+      url: "https://www.betika.com",
+      description: "A sports betting platform providing betting opportunities across various sports."
+    },
+    {
+      id: "betwinner",
+      name: "Betwinner",
+      url: "https://betwinner.com",
+      description: "An online betting platform offering sports betting and gaming services."
+    }
   ],
 
   BROKERS: [
-    { id: "ngx", name: "NGX", url: "https://www.ngxgroup.com" },
-    { id: "bamboo", name: "Bamboo", url: "https://investbamboo.com" },
-    { id: "cowrywise", name: "Cowrywise", url: "https://cowrywise.com" },
-    { id: "trove", name: "Trove", url: "https://troveapp.co" },
-    { id: "chaka", name: "Chaka", url: "https://chaka.com" },
-    { id: "rise", name: "Rise", url: "https://risevest.com" },
-    { id: "stanbic-ibtc", name: "Stanbic IBTC", url: "https://www.stanbicibtcbank.com" },
-    { id: "gse", name: "Ghana Stock Exchange", url: "https://gse.com.gh" },
-    { id: "ic-securities", name: "IC Securities", url: "https://icsecurities.com" }
+    {
+      id: "ngx",
+      name: "NGX",
+      url: "https://www.ngxgroup.com",
+      description: "The Nigerian Exchange provides a marketplace for buying and selling securities in Nigeria."
+    },
+    {
+      id: "bamboo",
+      name: "Bamboo",
+      url: "https://investbamboo.com",
+      description: "An investment platform that gives users access to investment opportunities."
+    },
+    {
+      id: "cowrywise",
+      name: "Cowrywise",
+      url: "https://cowrywise.com",
+      description: "A digital savings and investment platform."
+    },
+    {
+      id: "trove",
+      name: "Trove",
+      url: "https://troveapp.co",
+      description: "An investment platform providing access to financial markets and investment products."
+    },
+    {
+      id: "chaka",
+      name: "Chaka",
+      url: "https://chaka.com",
+      description: "A digital investment platform providing access to different investment opportunities."
+    },
+    {
+      id: "rise",
+      name: "Rise",
+      url: "https://risevest.com",
+      description: "A digital investment platform focused on investment products and wealth-building opportunities."
+    },
+    {
+      id: "stanbic-ibtc",
+      name: "Stanbic IBTC",
+      url: "https://www.stanbicibtcbank.com",
+      description: "A financial services institution offering banking and investment-related services."
+    },
+    {
+      id: "gse",
+      name: "Ghana Stock Exchange",
+      url: "https://gse.com.gh",
+      description: "Ghana's securities exchange where listed securities can be traded."
+    },
+    {
+      id: "ic-securities",
+      name: "IC Securities",
+      url: "https://icsecurities.com",
+      description: "A financial services firm providing investment and securities-related services."
+    }
   ],
 
   BANKS: [
-    { id: "access-bank", name: "Access Bank", url: "https://www.accessbankplc.com" },
-    { id: "gtco", name: "GTCO / GTBank", url: "https://www.gtbank.com" },
-    { id: "uba", name: "UBA", url: "https://www.ubagroup.com" },
-    { id: "firstbank", name: "FirstBank", url: "https://www.firstbanknigeria.com" },
-    { id: "zenith", name: "Zenith Bank", url: "https://www.zenithbank.com" },
-    { id: "stanbic-ibtc-bank", name: "Stanbic IBTC", url: "https://www.stanbicibtcbank.com" },
-    { id: "gcb", name: "GCB Bank", url: "https://www.gcb.com.gh" },
-    { id: "ecobank", name: "Ecobank", url: "https://www.ecobank.com" },
-    { id: "absa-ghana", name: "Absa Ghana", url: "https://www.absa.com.gh" }
+    {
+      id: "access-bank",
+      name: "Access Bank",
+      url: "https://www.accessbankplc.com",
+      description: "A commercial bank providing banking and financial services."
+    },
+    {
+      id: "gtco",
+      name: "GTCO / GTBank",
+      url: "https://www.gtbank.com",
+      description: "A financial institution providing banking and related financial services."
+    },
+    {
+      id: "uba",
+      name: "UBA",
+      url: "https://www.ubagroup.com",
+      description: "A banking group providing personal, business and corporate financial services."
+    },
+    {
+      id: "firstbank",
+      name: "FirstBank",
+      url: "https://www.firstbanknigeria.com",
+      description: "A Nigerian bank offering personal, business and corporate banking services."
+    },
+    {
+      id: "zenith",
+      name: "Zenith Bank",
+      url: "https://www.zenithbank.com",
+      description: "A financial institution providing banking and financial services."
+    },
+    {
+      id: "stanbic-ibtc-bank",
+      name: "Stanbic IBTC",
+      url: "https://www.stanbicibtcbank.com",
+      description: "A financial services institution offering banking and investment-related services."
+    },
+    {
+      id: "gcb",
+      name: "GCB Bank",
+      url: "https://www.gcb.com.gh",
+      description: "A Ghanaian bank providing banking and financial services."
+    },
+    {
+      id: "ecobank",
+      name: "Ecobank",
+      url: "https://www.ecobank.com",
+      description: "A pan-African banking group providing banking and financial services."
+    },
+    {
+      id: "absa-ghana",
+      name: "Absa Ghana",
+      url: "https://www.absa.com.gh",
+      description: "A Ghanaian banking institution providing financial and banking services."
+    }
   ],
 
-  /* JOBS and PORTFOLIOS use Tally only */
-
   JOBS: [],
-
   PORTFOLIOS: []
-
 };
 
+/* =====================================================
+   DISCOVER DATA
+   ===================================================== */
+
+const discoverPlatforms = [
+  ...gallery.BET.map(platform => ({
+    ...platform,
+    category: "BET"
+  })),
+
+  ...gallery.BROKERS.map(platform => ({
+    ...platform,
+    category: "BROKERS"
+  })),
+
+  ...gallery.BANKS.map(platform => ({
+    ...platform,
+    category: "BANKS"
+  }))
+];
 
 /* =====================================================
    STORAGE
@@ -86,7 +249,6 @@ let selections =
 let pendingCategory = null;
 let pendingSlot = null;
 
-
 /* =====================================================
    HELPERS
    ===================================================== */
@@ -98,9 +260,7 @@ function getSelections(category) {
   }
 
   return selections[category];
-
 }
-
 
 function saveSelections() {
 
@@ -110,7 +270,6 @@ function saveSelections() {
   );
 
 }
-
 
 /* =====================================================
    RENDER CATEGORY
@@ -129,12 +288,6 @@ function renderCategory(category) {
     getSelections(category);
 
   grid.innerHTML = "";
-
-  /*
-   * JOBS / PORTFOLIOS
-   * Approved listings are displayed first.
-   * Empty positions remain + slots for new submissions.
-   */
 
   if (
     category === "JOBS" ||
@@ -164,12 +317,13 @@ function renderCategory(category) {
           listing.image ||
           listing.logo ||
           "";
-          
+
         const displayTitle =
           listing.title ||
           listing.name ||
           listing.company ||
           "Listing";
+
         const displaySubtitle =
           listing.subtitle ||
           listing.profession ||
@@ -178,31 +332,28 @@ function renderCategory(category) {
           "";
 
         slot.innerHTML = `
-  ${
-    image
-      ? `<img
-           src="${image}"
-           alt="${displayTitle}"
-           class="listing-image"
-         >`
-      : `
-        <span class="listing-placeholder">
-          ${category === "JOBS" ? "JOB" : "PORTFOLIO"}
-        </span>
-      `
-  }
+          ${
+            image
+              ? `<img
+                   src="${image}"
+                   alt="${displayTitle}"
+                   class="listing-image"
+                 >`
+              : `
+                <span class="listing-placeholder">
+                  ${category === "JOBS" ? "JOB" : "PORTFOLIO"}
+                </span>
+              `
+          }
 
-  <strong>${displayTitle}</strong>
+          <strong>${displayTitle}</strong>
 
-  <small>${displaySubtitle}</small>
-`;
+          <small>${displaySubtitle}</small>
+        `;
 
         slot.addEventListener(
           "click",
-          () => openListing(
-            listing,
-            category
-          )
+          () => openListing(listing, category)
         );
 
       } else {
@@ -222,10 +373,7 @@ function renderCategory(category) {
 
         slot.addEventListener(
           "click",
-          () => openGallery(
-            category,
-            index
-          )
+          () => openGallery(category, index)
         );
 
       }
@@ -235,13 +383,7 @@ function renderCategory(category) {
     }
 
     return;
-
   }
-
-
-  /*
-   * BET / BROKERS / BANKS
-   */
 
   for (let index = 0; index < 9; index++) {
 
@@ -252,7 +394,6 @@ function renderCategory(category) {
       document.createElement("button");
 
     slot.className = "slot";
-
 
     if (!platform) {
 
@@ -265,29 +406,19 @@ function renderCategory(category) {
 
       slot.addEventListener(
         "click",
-        () => openGallery(
-          category,
-          index
-        )
+        () => openGallery(category, index)
       );
 
     } else {
 
       slot.innerHTML = `
-        <strong>
-          ${platform.name}
-        </strong>
-
-        <small>
-          Tap to open
-        </small>
+        <strong>${platform.name}</strong>
+        <small>Tap to open</small>
       `;
 
       slot.addEventListener(
         "click",
-        () => openPlatform(
-          platform
-        )
+        () => openPlatform(platform)
       );
 
     }
@@ -310,7 +441,6 @@ function renderAllCategories() {
 
 }
 
-
 /* =====================================================
    OPEN GALLERY
    ===================================================== */
@@ -328,9 +458,6 @@ function openGallery(category, slotIndex) {
 
   list.innerHTML = "";
 
-
-  /* JOBS / PORTFOLIOS */
-
   if (
     category === "JOBS" ||
     category === "PORTFOLIOS"
@@ -341,12 +468,10 @@ function openGallery(category, slotIndex) {
         ? "Submit a job opportunity"
         : "Submit a portfolio";
 
-
     const button =
       document.createElement("button");
 
-    button.className =
-      "gallery-item";
+    button.className = "gallery-item";
 
     button.innerHTML = `
       <strong>
@@ -369,16 +494,10 @@ function openGallery(category, slotIndex) {
 
     list.appendChild(button);
 
-  }
-
-
-  /* NORMAL GALLERY */
-
-  else {
+  } else {
 
     title.textContent =
       `Select a ${category.toLowerCase()} platform`;
-
 
     const selected =
       getSelections(category);
@@ -390,7 +509,6 @@ function openGallery(category, slotIndex) {
           .map(platform => platform.id)
       );
 
-
     gallery[category].forEach(platform => {
 
       const button =
@@ -399,10 +517,8 @@ function openGallery(category, slotIndex) {
       button.className =
         "gallery-item";
 
-
       const used =
         alreadySelected.has(platform.id);
-
 
       button.innerHTML = `
         <strong>${platform.name}</strong>
@@ -415,12 +531,10 @@ function openGallery(category, slotIndex) {
         </span>
       `;
 
-
       button.addEventListener(
         "click",
         () => selectPlatform(platform)
       );
-
 
       list.appendChild(button);
 
@@ -428,26 +542,142 @@ function openGallery(category, slotIndex) {
 
   }
 
+  document
+    .getElementById("galleryOverlay")
+    .classList.remove("hidden");
+}
+
+/* =====================================================
+   DISCOVER
+   ===================================================== */
+
+function openDiscover() {
+
+  const title =
+    document.getElementById("galleryTitle");
+
+  const list =
+    document.getElementById("galleryList");
+
+  title.textContent =
+    "Discover Platforms";
+
+  list.innerHTML = "";
+
+  discoverPlatforms.forEach(platform => {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "discover-item";
+
+    card.innerHTML = `
+      <div class="discover-top">
+        <strong>${platform.name}</strong>
+        <span class="discover-category">
+          ${platform.category}
+        </span>
+      </div>
+
+      <p>
+        ${platform.description}
+      </p>
+
+      <button class="discover-add">
+        Add to ${platform.category}
+      </button>
+    `;
+
+    card
+      .querySelector(".discover-add")
+      .addEventListener(
+        "click",
+        () => discoverAdd(platform)
+      );
+
+    list.appendChild(card);
+
+  });
 
   document
     .getElementById("galleryOverlay")
     .classList.remove("hidden");
+}
+
+function discoverAdd(platform) {
+
+  const selected =
+    getSelections(platform.category);
+
+  const duplicate =
+    selected.some(
+      item =>
+        item &&
+        item.id === platform.id
+    );
+
+  if (duplicate) {
+
+    closeGallery();
+
+    showToast(
+      `${platform.name} is already added`
+    );
+
+    return;
+  }
+
+  const firstEmpty =
+    selected.findIndex(
+      item => !item
+    );
+
+  if (firstEmpty === -1) {
+
+    closeGallery();
+
+    showToast(
+      `${platform.category} is full`
+    );
+
+    return;
+  }
+
+  selected[firstEmpty] =
+    platform;
+
+  saveSelections();
+
+  closeGallery();
+
+  renderCategory(
+    platform.category
+  );
+
+  showToast(
+    `${platform.name} added to ${platform.category}`
+  );
 
 }
 
-
 /* =====================================================
-   TALLY FORM
-   ONLY JOBS AND PORTFOLIOS USE IFRAME
+   TALLY
    ===================================================== */
 
 function openTallyForm(category) {
 
-  const tallyUrl = TALLY_FORMS[category];
+  const tallyUrl =
+    TALLY_FORMS[category];
 
   if (!tallyUrl) {
+
     closeGallery();
-    showToast("Tally form unavailable.");
+
+    showToast(
+      "Tally form unavailable."
+    );
+
     return;
   }
 
@@ -479,17 +709,23 @@ function openTallyForm(category) {
   frame.src =
     `${tallyUrl}${separator}category=${encodeURIComponent(category)}`;
 
+  frame.srcdoc = "";
+
   window.scrollTo(0, 0);
 }
 
 /* =====================================================
-   OPEN APPROVED LISTING
+   APPROVED LISTING
    ===================================================== */
 
 function openListing(listing, category) {
 
   if (!listing) {
-    showToast("Listing unavailable.");
+
+    showToast(
+      "Listing unavailable."
+    );
+
     return;
   }
 
@@ -522,23 +758,17 @@ function openListing(listing, category) {
   const frame =
     document.getElementById("platformFrame");
 
-  const iframeView =
-    document.getElementById("iframeView");
+  document
+    .getElementById("homeView")
+    .classList.add("hidden");
 
-  const homeView =
-    document.getElementById("homeView");
-
-  homeView.classList.add("hidden");
-  iframeView.classList.remove("hidden");
+  document
+    .getElementById("iframeView")
+    .classList.remove("hidden");
 
   document
     .getElementById("iframeTitle")
     .textContent = title;
-
-  /*
-   * Approved listings are currently displayed
-   * through a simple MQ-generated page.
-   */
 
   const imageHTML =
     image
@@ -562,7 +792,7 @@ function openListing(listing, category) {
       ? "JOB OPPORTUNITY"
       : "PORTFOLIO";
 
-  const html = `
+  frame.srcdoc = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -634,8 +864,6 @@ function openListing(listing, category) {
     </html>
   `;
 
-  frame.srcdoc = html;
-
   window.scrollTo(0, 0);
 }
 
@@ -652,10 +880,8 @@ function selectPlatform(platform) {
     return;
   }
 
-
   const selected =
     getSelections(pendingCategory);
-
 
   const duplicate =
     selected.some(
@@ -664,7 +890,6 @@ function selectPlatform(platform) {
         item.id === platform.id
     );
 
-
   if (duplicate) {
 
     showToast(
@@ -672,9 +897,7 @@ function selectPlatform(platform) {
     );
 
     return;
-
   }
-
 
   selected[pendingSlot] =
     platform;
@@ -691,12 +914,9 @@ function selectPlatform(platform) {
     `${platform.name} added`
   );
 
-
   pendingCategory = null;
   pendingSlot = null;
-
 }
-
 
 /* =====================================================
    SEE MORE / ADD MORE
@@ -721,7 +941,6 @@ document
             item => !item
           );
 
-
         openGallery(
           category,
           firstEmpty === -1
@@ -733,7 +952,6 @@ document
     );
 
   });
-
 
 /* =====================================================
    CLOSE GALLERY
@@ -747,14 +965,12 @@ function closeGallery() {
 
 }
 
-
 document
   .getElementById("galleryClose")
   .addEventListener(
     "click",
     closeGallery
   );
-
 
 document
   .getElementById("galleryOverlay")
@@ -766,41 +982,36 @@ document
         event.target.id ===
         "galleryOverlay"
       ) {
-
         closeGallery();
-
       }
 
     }
   );
 
-
 /* =====================================================
-   OPEN EXTERNAL PLATFORM
-   IMPORTANT:
-   EXTERNAL WEBSITES ARE NOT IFRAMED.
-   THEY OPEN DIRECTLY IN A NEW TAB.
+   EXTERNAL PLATFORM
    ===================================================== */
 
 function openPlatform(platform) {
 
-  if (!platform || !platform.url) {
+  if (
+    !platform ||
+    !platform.url
+  ) {
 
     showToast(
       "Platform link unavailable."
     );
 
     return;
-
   }
 
-  window.location.href = platform.url;
-
+  window.location.href =
+    platform.url;
 }
 
-
 /* =====================================================
-   CLOSE TALLY VIEW
+   CLOSE PLATFORM VIEW
    ===================================================== */
 
 function closePlatform() {
@@ -812,26 +1023,23 @@ function closePlatform() {
 
   frame.src =
     "about:blank";
-  frame.srcdoc = "";
 
+  frame.srcdoc =
+    "";
 
   document
     .getElementById("iframeView")
     .classList.add("hidden");
 
-
   document
     .getElementById("homeView")
     .classList.remove("hidden");
-
 
   window.scrollTo(
     0,
     0
   );
-
 }
-
 
 document
   .getElementById("backBtn")
@@ -839,7 +1047,6 @@ document
     "click",
     closePlatform
   );
-
 
 /* =====================================================
    MQ LOGO
@@ -852,14 +1059,14 @@ document
     closePlatform
   );
 
-
 /* =====================================================
    SIDE MENU
    ===================================================== */
 
 const sideMenu =
-  document.getElementById("sideMenu");
-
+  document.getElementById(
+    "sideMenu"
+  );
 
 document
   .getElementById("menuBtn")
@@ -870,7 +1077,6 @@ document
     }
   );
 
-
 document
   .getElementById("menuClose")
   .addEventListener(
@@ -879,7 +1085,6 @@ document
       sideMenu.classList.remove("open");
     }
   );
-
 
 /* =====================================================
    ABOUT GTH
@@ -898,7 +1103,6 @@ document
     }
   );
 
-
 /* =====================================================
    HEADER BUTTONS
    ===================================================== */
@@ -907,78 +1111,82 @@ document
   .getElementById("discoverBtn")
   .addEventListener(
     "click",
-    () => {
-      showToast("Discover");
-    }
+    openDiscover
   );
-
 
 document
   .getElementById("supportBtn")
   .addEventListener(
     "click",
     () => {
-      showToast("Customer Service");
+
+      if (CUSTOMER_SERVICE_URL) {
+        window.location.href =
+          CUSTOMER_SERVICE_URL;
+      } else {
+        showToast(
+          "Customer Service link not set yet."
+        );
+      }
+
     }
   );
-
 
 document
   .getElementById("telegramBtn")
   .addEventListener(
     "click",
     () => {
-      showToast("Telegram");
+
+      if (TELEGRAM_URL) {
+        window.location.href =
+          TELEGRAM_URL;
+      } else {
+        showToast(
+          "Telegram link not set yet."
+        );
+      }
+
     }
   );
-
 
 /* =====================================================
    EMAIL GATE
    ===================================================== */
 
 const emailGate =
-  document.getElementById("emailGate");
+  document.getElementById(
+    "emailGate"
+  );
 
 const emailForm =
-  document.getElementById("emailForm");
+  document.getElementById(
+    "emailForm"
+  );
 
 const emailInput =
-  document.getElementById("emailInput");
-
+  document.getElementById(
+    "emailInput"
+  );
 
 function closeEmailGate() {
-
   emailGate.classList.add("hidden");
-
 }
-
 
 function openEmailGate() {
-
   emailGate.classList.remove("hidden");
-
 }
-
 
 const savedEmail =
-  localStorage.getItem(EMAIL_KEY);
-
+  localStorage.getItem(
+    EMAIL_KEY
+  );
 
 if (savedEmail) {
-
   closeEmailGate();
-
 } else {
-
   openEmailGate();
-
 }
-
-
-/* =====================================================
-   EMAIL SUBMISSION
-   ===================================================== */
 
 emailForm.addEventListener(
   "submit",
@@ -989,24 +1197,19 @@ emailForm.addEventListener(
     const email =
       emailInput.value.trim();
 
-
     if (!email) {
 
       emailInput.reportValidity();
 
       return;
-
     }
-
 
     localStorage.setItem(
       EMAIL_KEY,
       email
     );
 
-
     closeEmailGate();
-
 
     showToast(
       "Welcome to MQ"
@@ -1015,7 +1218,6 @@ emailForm.addEventListener(
   }
 );
 
-
 /* =====================================================
    TOAST
    ===================================================== */
@@ -1023,31 +1225,31 @@ emailForm.addEventListener(
 function showToast(message) {
 
   const toast =
-    document.getElementById("toast");
-
+    document.getElementById(
+      "toast"
+    );
 
   toast.textContent =
     message;
 
-
-  toast.classList.add("show");
-
+  toast.classList.add(
+    "show"
+  );
 
   clearTimeout(
     window.mqToastTimer
   );
 
-
   window.mqToastTimer =
     setTimeout(
       () => {
-        toast.classList.remove("show");
+        toast.classList.remove(
+          "show"
+        );
       },
       2200
     );
-
 }
-
 
 /* =====================================================
    INITIALISE
