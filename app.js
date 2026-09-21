@@ -178,20 +178,24 @@ function renderCategory(category) {
           "";
 
         slot.innerHTML = `
-          ${
-            image
-              ? `<img
-                   src="${image}"
-                   alt=""
-                   class="listing-image"
-                 >`
-              : ""
-          }
+  ${
+    image
+      ? `<img
+           src="${image}"
+           alt="${displayTitle}"
+           class="listing-image"
+         >`
+      : `
+        <span class="listing-placeholder">
+          ${category === "JOBS" ? "JOB" : "PORTFOLIO"}
+        </span>
+      `
+  }
 
-          <strong>${displayTitle}</strong>
+  <strong>${displayTitle}</strong>
 
-          <small>${displaySubtitle}</small>
-        `;
+  <small>${displaySubtitle}</small>
+`;
 
         slot.addEventListener(
           "click",
