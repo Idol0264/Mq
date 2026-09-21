@@ -810,6 +810,7 @@ function closePlatform() {
 
   frame.src =
     "about:blank";
+  frame.srcdoc = "";
 
 
   document
