@@ -1219,3 +1219,57 @@ main {
     padding: 20px;
   }
 }
+
+/* =====================================================
+   DISCOVER
+   ===================================================== */
+
+.discover-item {
+  width: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.discover-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.discover-top strong {
+  font-size: 18px;
+}
+
+.discover-category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: .65;
+}
+
+.discover-item p {
+  margin: 10px 0 16px;
+  line-height: 1.55;
+  opacity: .78;
+  font-size: 14px;
+}
+
+.discover-add {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(255,255,255,.12);
+  color: inherit;
+}
+
+.discover-add:active {
+  transform: scale(.98);
+}
