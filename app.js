@@ -188,23 +188,9 @@ function renderCategory(category) {
               : ""
           }
 
-          <strong>
-            ${
-              listing.title ||
-              listing.name ||
-              listing.company ||
-              "Listing"
-            }
-          </strong>
+          <strong>${displayTitle}</strong>
 
-          <small>
-            ${
-              listing.subtitle ||
-              listing.profession ||
-              listing.location ||
-              ""
-            }
-          </small>
+          <small>${displaySubtitle}</small>
         `;
 
         slot.addEventListener(
