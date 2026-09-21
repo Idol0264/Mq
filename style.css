@@ -189,7 +189,7 @@ button {
 
 
 /* =========================
-   SVG HEADER BUTTONS
+   HEADER BUTTONS
 ========================= */
 
 .icon-btn {
@@ -238,7 +238,7 @@ button {
 
 
 /* =========================
-   TELEGRAM ICON
+   TELEGRAM
 ========================= */
 
 #telegramBtn svg path {
@@ -390,14 +390,6 @@ main {
   letter-spacing: 0.18em;
 }
 
-
-/*
-   THE END-TO-END LINE
-
-   The category name sits
-   directly in the centre.
-*/
-
 .category-line::before,
 .category-line::after {
   content: "";
@@ -419,7 +411,7 @@ main {
 
 
 /* =========================
-   3 × 3 PLATFORM GRID
+   PLATFORM GRID
 ========================= */
 
 .platform-grid {
@@ -801,6 +793,241 @@ main {
 
 .close-btn:hover {
   background: var(--surface);
+}
+
+
+/* =========================
+   DISCOVER
+========================= */
+
+.discover-item {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+
+  padding: 18px;
+
+  margin-bottom: 14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--solid) 94%,
+        var(--accent)
+      ),
+      var(--surface)
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(0, 0, 0, 0.07);
+
+  text-align: left;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.discover-item::before {
+  content: "";
+
+  position: absolute;
+
+  top: -55px;
+  right: -55px;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  opacity: 0.07;
+
+  filter: blur(20px);
+
+  pointer-events: none;
+}
+
+.discover-item:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--accent) 45%,
+      var(--line)
+    );
+
+  box-shadow:
+    0 16px 36px
+    rgba(0, 0, 0, 0.11);
+}
+
+.discover-top {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+/* =========================
+   INDUSTRY LOGO
+========================= */
+
+.discover-logo {
+  width: 50px;
+  height: 50px;
+
+  flex: 0 0 50px;
+
+  display: grid;
+
+  place-items: center;
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 15px;
+
+  background: var(--solid);
+
+  box-shadow:
+    0 6px 16px
+    rgba(0, 0, 0, 0.08);
+}
+
+.discover-logo img {
+  width: 31px;
+  height: 31px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.discover-logo-fallback {
+  font-size: 15px;
+
+  font-weight: 950;
+
+  letter-spacing: -0.04em;
+}
+
+.discover-title {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.discover-title strong {
+  display: block;
+
+  font-size: 16px;
+
+  line-height: 1.25;
+}
+
+.discover-category {
+  display: inline-block;
+
+  margin-top: 5px;
+
+  padding:
+    4px
+    8px;
+
+  border-radius: 999px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--accent) 12%,
+      transparent
+    );
+
+  color: var(--accent);
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+}
+
+.discover-item p {
+  position: relative;
+
+  margin:
+    15px
+    0
+    16px;
+
+  color: var(--muted);
+
+  line-height: 1.6;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   DISCOVER ADD BUTTON
+========================= */
+
+.discover-add {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    11px
+    14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 13px;
+
+  background: var(--text);
+
+  color: var(--bg);
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.discover-add:hover {
+  opacity: 0.88;
+}
+
+.discover-add:active {
+  transform: scale(0.98);
 }
 
 
@@ -1190,6 +1417,17 @@ main {
         minmax(0, 1fr)
       );
   }
+
+  .discover-item {
+    padding: 16px;
+  }
+
+  .discover-logo {
+    width: 46px;
+    height: 46px;
+
+    flex-basis: 46px;
+  }
 }
 
 
@@ -1218,58 +1456,12 @@ main {
   .gallery-screen {
     padding: 20px;
   }
-}
 
-/* =====================================================
-   DISCOVER
-   ===================================================== */
+  .discover-title strong {
+    font-size: 15px;
+  }
 
-.discover-item {
-  width: 100%;
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  margin-bottom: 14px;
-  text-align: left;
-}
-
-.discover-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.discover-top strong {
-  font-size: 18px;
-}
-
-.discover-category {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  opacity: .65;
-}
-
-.discover-item p {
-  margin: 10px 0 16px;
-  line-height: 1.55;
-  opacity: .78;
-  font-size: 14px;
-}
-
-.discover-add {
-  width: 100%;
-  border: 0;
-  border-radius: 12px;
-  padding: 11px 14px;
-  font-weight: 700;
-  cursor: pointer;
-  background: rgba(255,255,255,.12);
-  color: inherit;
-}
-
-.discover-add:active {
-  transform: scale(.98);
+  .discover-item p {
+    font-size: 12px;
+  }
 }
