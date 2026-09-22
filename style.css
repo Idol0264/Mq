@@ -1523,3 +1523,13 @@ main {
 .about-gth-btn:active {
   transform: scale(0.98);
 }
+
+/* =========================
+   FIX — SINGLE ABOUT ITEM
+========================= */
+
+.gallery-list > :only-child {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 100%;
+}
