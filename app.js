@@ -286,8 +286,7 @@ let pendingSlot = null;
 function getSelections(category) {
 
   if (!Array.isArray(selections[category])) {
-    selections[category] =
-      new Array(9).fill(null);
+    selections[category] = [];
   }
 
   return selections[category];
