@@ -1,4 +1,5 @@
 const TALLY_FORMS = {
+  EMAIL: "https://tally.so/r/7RGXBR",
   JOBS: "https://tally.so/r/VLry4E",
   PORTFOLIOS: "https://tally.so/r/Xxjy2d"
 };
