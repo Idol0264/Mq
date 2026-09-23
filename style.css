@@ -189,6 +189,10 @@ input:focus-visible {
   stroke: none;
 }
 
+/* =========================
+   MQ IMAGE LOGO
+========================= */
+
 .mq-logo {
   width: 40px;
   height: 40px;
@@ -196,19 +200,28 @@ input:focus-visible {
   display: grid;
   place-items: center;
 
+  padding: 0;
   border: 0;
   border-radius: 12px;
 
-  background: var(--text);
-  color: var(--bg);
+  background: transparent;
 
-  font-size: 13px;
-  font-weight: 950;
-  letter-spacing: -0.04em;
+  overflow: hidden;
 
   cursor: pointer;
 
   transition: transform 0.18s ease;
+}
+
+.mq-logo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 12px;
 }
 
 .mq-logo:active {
