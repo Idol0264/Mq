@@ -1884,11 +1884,20 @@ emailForm.addEventListener(
       return;
     }
 
+    /*
+     * Save the email locally so the MQ gate
+     * does not appear again on this device.
+     */
     localStorage.setItem(
       EMAIL_KEY,
       email
     );
 
+    /*
+     * Continue into MQ immediately.
+     * The actual Tally collection integration
+     * will be connected separately.
+     */
     closeEmailGate();
 
     showToast(
