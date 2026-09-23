@@ -1,0 +1,18 @@
+{
+  "name": "MQ — Money Making Menu",
+  "short_name": "MQ",
+  "description": "Money Making Menu by GT Softwares, a God’stime Holdings product.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "mq-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
