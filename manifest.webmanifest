@@ -1,0 +1,19 @@
+{
+  "name": "Money Making Menu",
+  "short_name": "MQ",
+  "description": "Money Making Menu — a GTS software product by God’stime Holdings.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#08090d",
+  "theme_color": "#08090d",
+  "icons": [
+    {
+      "src": "gth-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
