@@ -1397,6 +1397,198 @@ function selectPlatform(
 }
 
 /* =====================================================
+   SEE MORE VIEW
+   ===================================================== */
+
+function openMorePlatforms(category) {
+
+  pendingCategory = null;
+  pendingSlot = null;
+
+  const title =
+    document.getElementById(
+      "galleryTitle"
+    );
+
+  const list =
+    document.getElementById(
+      "galleryList"
+    );
+
+  title.textContent =
+    `${category} — See More`;
+
+  list.innerHTML = "";
+
+  /* ===================================================
+     JOBS / PORTFOLIOS
+     =================================================== */
+
+  if (
+    category === "JOBS" ||
+    category === "PORTFOLIOS"
+  ) {
+
+    const approved =
+      category === "JOBS"
+        ? approvedJobs
+        : approvedPortfolios;
+
+    const extras =
+      approved.slice(9);
+
+    if (!extras.length) {
+
+      list.innerHTML = `
+        <div class="discover-item">
+          <strong>No more listings yet.</strong>
+
+          <p>
+            Additional approved listings will
+            appear here after the first 9.
+          </p>
+        </div>
+      `;
+
+    } else {
+
+      extras.forEach(
+        listing => {
+
+          const card =
+            document.createElement(
+              "button"
+            );
+
+          card.className =
+            "gallery-item";
+
+          const displayTitle =
+            listing.title ||
+            listing.name ||
+            listing.company ||
+            "Listing";
+
+          const displaySubtitle =
+            listing.subtitle ||
+            listing.profession ||
+            listing.category ||
+            listing.location ||
+            "";
+
+          card.innerHTML = `
+            <strong>
+              ${escapeHTML(displayTitle)}
+            </strong>
+
+            <span>
+              ${escapeHTML(displaySubtitle)}
+            </span>
+          `;
+
+          card.addEventListener(
+            "click",
+            () =>
+              openListing(
+                listing,
+                category
+              )
+          );
+
+          list.appendChild(card);
+
+        }
+      );
+
+    }
+
+  }
+
+  /* ===================================================
+     PLATFORM CATEGORIES
+     =================================================== */
+
+  else {
+
+    const selected =
+      getSelections(category);
+
+    const extras =
+      selected
+        .slice(9)
+        .filter(Boolean);
+
+    if (!extras.length) {
+
+      list.innerHTML = `
+        <div class="discover-item">
+          <strong>
+            No additional platforms yet.
+          </strong>
+
+          <p>
+            Your first 9 platforms appear
+            on the main screen.
+          </p>
+        </div>
+      `;
+
+    } else {
+
+      extras.forEach(
+        platform => {
+
+          const card =
+            document.createElement(
+              "button"
+            );
+
+          card.className =
+            "gallery-item";
+
+          card.innerHTML = `
+            ${platformLogoHTML(
+              platform,
+              "gallery"
+            )}
+
+            <strong>
+              ${escapeHTML(platform.name)}
+            </strong>
+
+            <span>
+              Tap to open
+            </span>
+          `;
+
+          card.addEventListener(
+            "click",
+            () =>
+              openPlatform(
+                platform
+              )
+          );
+
+          list.appendChild(card);
+
+        }
+      );
+
+    }
+
+  }
+
+  document
+    .getElementById(
+      "galleryOverlay"
+    )
+    .classList.remove(
+      "hidden"
+    );
+
+}
+
+/* =====================================================
    SEE MORE / ADD MORE
    ===================================================== */
 
