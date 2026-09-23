@@ -1589,6 +1589,30 @@ function openMorePlatforms(category) {
 }
 
 /* =====================================================
+   SEE MORE BUTTONS
+   ===================================================== */
+
+document
+  .querySelectorAll(
+    "[data-see-more]"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openMorePlatforms(
+          button.dataset.seeMore
+        );
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
    SEE MORE / ADD MORE
    ===================================================== */
 
