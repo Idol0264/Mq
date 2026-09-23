@@ -1421,11 +1421,14 @@ document
             item => !item
           );
 
+        const targetSlot =
+          firstEmpty === -1
+            ? selected.length
+            : firstEmpty;
+
         openGallery(
           category,
-          firstEmpty === -1
-            ? 0
-            : firstEmpty
+          targetSlot
         );
 
       }
