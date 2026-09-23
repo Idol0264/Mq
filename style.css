@@ -1548,28 +1548,54 @@ main {
 }
 
 /* =========================
-   MQ SEE MORE BUTTON
+   CATEGORY HEADER + SEE MORE
 ========================= */
 
+.category-header {
+  width: 100%;
+  margin-top: 35px;
+  margin-bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.category-header h2 {
+  margin: 0;
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
 .see-more-btn {
+  flex-shrink: 0;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
 
   min-height: 34px;
-  padding: 7px 12px;
+  padding: 7px 11px;
 
   border: 1px solid var(--line);
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.06);
+  background: color-mix(
+    in srgb,
+    var(--surface) 88%,
+    transparent
+  );
 
   color: var(--muted);
 
   font-size: 9px;
   font-weight: 900;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 
   cursor: pointer;
 
@@ -1577,7 +1603,7 @@ main {
   -webkit-backdrop-filter: blur(12px);
 
   box-shadow:
-    0 5px 16px rgba(0, 0, 0, 0.06);
+    0 5px 16px rgba(0, 0, 0, 0.05);
 
   transition:
     transform 0.18s ease,
@@ -1590,53 +1616,78 @@ main {
 .see-more-btn:hover {
   color: var(--accent);
 
-  background: rgba(255, 255, 255, 0.11);
+  background:
+    color-mix(
+      in srgb,
+      var(--accent) 9%,
+      var(--surface)
+    );
 
-  border-color: var(--accent);
+  border-color:
+    color-mix(
+      in srgb,
+      var(--accent) 38%,
+      var(--line)
+    );
 
   box-shadow:
-    0 7px 20px rgba(0, 0, 0, 0.09);
+    0 8px 22px rgba(0, 0, 0, 0.08);
 
   transform: translateY(-1px);
 }
 
 .see-more-btn:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 
-
-/* Eye icon */
-
-.see-more-btn .eye-icon {
+.eye-icon {
   width: 18px;
   height: 18px;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 
   border: 1px solid currentColor;
   border-radius: 50%;
 
-  font-size: 8px;
+  font-size: 7px;
   line-height: 1;
 }
 
 
-/* Small screens */
+/* =========================
+   MOBILE SEE MORE
+========================= */
 
 @media (max-width: 430px) {
 
+  .category-header {
+    margin-top: 29px;
+    margin-bottom: 11px;
+  }
+
   .see-more-btn {
     min-height: 32px;
-    padding: 6px 10px;
+    padding: 6px 9px;
 
     font-size: 8px;
   }
 
-  .see-more-btn .eye-icon {
+  .eye-icon {
     width: 17px;
     height: 17px;
+  }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .see-more-btn {
+    transition: none;
   }
 
 }
