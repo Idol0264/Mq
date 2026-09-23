@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="color-scheme"
+    content="light dark"
+  >
+
+  <meta
+    name="theme-color"
+    content="#111111"
+  >
+
+  <link
+    rel="icon"
+    href="gth-icon.svg"
+    type="image/svg+xml"
+  >
+
+  <title>MQ — Money Making Menu</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <link
+    rel="manifest"
+    href="manifest.webmanifest"
+  >
+
+  <link
+    rel="icon"
+    href="mq-icon.png"
+    type="image/png"
+  >
+
+</head>
+
+<body>
+
+  <!-- AMBIENT BACKGROUND -->
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-three"></div>
+
+
+  <!-- TOP HEADER -->
+  <header class="topbar">
+
+    <div class="top-left">
+
+      <!-- MENU -->
+      <button
+        class="icon-btn"
+        id="menuBtn"
+        aria-label="Open menu"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+
+
+      <!-- MQ HOME -->
+      <button
+        class="mq-logo"
+        id="homeLogo"
+        aria-label="MQ Home"
+        type="button"
+      >
+        <img
+          src="mq-icon.png"
+          alt="MQ"
+        >
+      </button>
+
+    </div>
+
+
+    <!-- RIGHT HEADER ICONS -->
+    <nav class="top-actions">
+
+      <!-- TELEGRAM -->
+      <button
+        class="icon-btn"
+        id="telegramBtn"
+        aria-label="Telegram"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.5 3.5 18.1 20c-.25 1.15-.92 1.43-1.87.9l-5.15-3.8-2.48 2.39c-.27.27-.5.5-1.03.5l.37-5.24 9.53-8.61c.41-.37-.09-.57-.64-.2L5.06 13.3.05 11.73c-1.09-.34-1.11-1.09.23-1.59L19.86 2.56c.9-.33 1.69.2 1.64.94Z"></path>
+        </svg>
+      </button>
+
+
+      <!-- CUSTOMER SERVICE -->
+      <button
+        class="icon-btn"
+        id="supportBtn"
+        aria-label="Customer Service"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 13v-1a8 8 0 0 1 16 0v1"></path>
+          <path d="M4 13h3v5H5a1 1 0 0 1-1-1v-4ZM20 13h-3v5h2a1 1 0 0 0 1-1v-4Z"></path>
+          <path d="M20 18c0 1.1-.9 2-2 2h-2"></path>
+        </svg>
+      </button>
+
+
+      <!-- DISCOVER -->
+      <button
+        class="icon-btn"
+        id="discoverBtn"
+        aria-label="Discover"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle
+            cx="12"
+            cy="12"
+            r="9"
+          ></circle>
+
+          <path
+            d="M9.6 9a2.7 2.7 0 1 1 4.8 1.7c-.8.9-1.9 1.3-1.9 2.8"
+          ></path>
+
+          <path
+            d="M12 17h.01"
+          ></path>
+        </svg>
+      </button>
+
+    </nav>
+
+  </header>
+
+
+  <!-- MAIN HOME -->
+  <main id="homeView">
+
+    <!-- WELCOME -->
+    <section class="welcome-card">
+
+      <span class="eyebrow">
+        GTS SOFTWARE
+      </span>
+
+      <h1>
+        Welcome to MQ
+      </h1>
+
+      <p>
+        Your Money Making Menu — a simple place to access
+        useful money-making platforms and digital opportunities.
+      </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- BET -->
+    <!-- ========================= -->
+    <section class="category-section">
+
+      <div class="category-header">
+
+        <h2 class="category-title">
+          BET
+        </h2>
+
+        <button
+          type="button"
+          class="see-more-btn"
+          data-see-more="BET"
+          aria-label="See more BET platforms"
+        >
+          <span class="eye-icon">◉</span>
+          <span>See More</span>
+        </button>
+
+      </div>
+
+
+      <div
+        class="platform-grid"
+        data-category="BET"
+      ></div>
+
+
+      <button
+        class="more-btn"
+        data-more="BET"
+        type="button"
+      >
+        +Add more
+      </button>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- BROKERS -->
+    <!-- ========================= -->
+    <section class="category-section">
+
+      <div class="category-header">
+
+        <h2 class="category-title">
+          BROKERS
+        </h2>
+
+        <button
+          type="button"
+          class="see-more-btn"
+          data-see-more="BROKERS"
+          aria-label="See more BROKERS platforms"
+        >
+          <span class="eye-icon">◉</span>
+          <span>See More</span>
+        </button>
+
+      </div>
+
+
+      <div
+        class="platform-grid"
+        data-category="BROKERS"
+      ></div>
+
+
+      <button
+        class="more-btn"
+        data-more="BROKERS"
+        type="button"
+      >
+        +Add more
+      </button>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- BANKS -->
+    <!-- ========================= -->
+    <section class="category-section">
+
+      <div class="category-header">
+
+        <h2 class="category-title">
+          BANKS
+        </h2>
+
+        <button
+          type="button"
+          class="see-more-btn"
+          data-see-more="BANKS"
+          aria-label="See more BANKS platforms"
+        >
+          <span class="eye-icon">◉</span>
+          <span>See More</span>
+        </button>
+
+      </div>
+
+
+      <div
+        class="platform-grid"
+        data-category="BANKS"
+      ></div>
+
+
+      <button
+        class="more-btn"
+        data-more="BANKS"
+        type="button"
+      >
+        +Add more
+      </button>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- JOBS -->
+    <!-- ========================= -->
+    <section class="category-section">
+
+      <div class="category-header">
+
+        <h2 class="category-title">
+          JOBS
+        </h2>
+
+        <button
+          type="button"
+          class="see-more-btn"
+          data-see-more="JOBS"
+          aria-label="See more JOBS"
+        >
+          <span class="eye-icon">◉</span>
+          <span>See More</span>
+        </button>
+
+      </div>
+
+
+      <div
+        class="platform-grid"
+        data-category="JOBS"
+      ></div>
+
+
+      <button
+        class="more-btn"
+        data-more="JOBS"
+        type="button"
+      >
+        +Add more
+      </button>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- PORTFOLIOS -->
+    <!-- ========================= -->
+    <section class="category-section">
+
+      <div class="category-header">
+
+        <h2 class="category-title">
+          PORTFOLIOS
+        </h2>
+
+        <button
+          type="button"
+          class="see-more-btn"
+          data-see-more="PORTFOLIOS"
+          aria-label="See more PORTFOLIOS"
+        >
+          <span class="eye-icon">◉</span>
+          <span>See More</span>
+        </button>
+
+      </div>
+
+
+      <div
+        class="platform-grid"
+        data-category="PORTFOLIOS"
+      ></div>
+
+
+      <button
+        class="more-btn"
+        data-more="PORTFOLIOS"
+        type="button"
+      >
+        +Add more
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================= -->
+  <!-- IFRAME PLATFORM VIEW -->
+  <!-- ========================= -->
+  <section
+    id="iframeView"
+    class="iframe-view hidden"
+  >
+
+    <div class="iframe-header">
+
+      <button
+        id="backBtn"
+        class="back-btn"
+        type="button"
+      >
+        ← Back
+      </button>
+
+      <strong id="iframeTitle">
+        Platform
+      </strong>
+
+    </div>
+
+
+    <iframe
+      id="platformFrame"
+      title="MQ Platform"
+      loading="lazy"
+      allowfullscreen
+    ></iframe>
+
+  </section>
+
+
+  <!-- ========================= -->
+  <!-- GALLERY -->
+  <!-- ========================= -->
+  <div
+    id="galleryOverlay"
+    class="gallery-overlay hidden"
+  >
+
+    <div class="gallery-screen">
+
+      <div class="gallery-header">
+
+        <div>
+
+          <span class="eyebrow">
+            GTS GALLERY
+          </span>
+
+          <h2 id="galleryTitle">
+            Select Platform
+          </h2>
+
+        </div>
+
+
+        <button
+          id="galleryClose"
+          class="close-btn"
+          aria-label="Close"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        id="galleryList"
+        class="gallery-list"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- SIDE MENU -->
+  <!-- ========================= -->
+  <aside
+    id="sideMenu"
+    class="side-menu"
+  >
+
+    <div class="side-menu-header">
+
+      <strong>
+        MQ
+      </strong>
+
+      <button
+        id="menuClose"
+        class="close-btn"
+        aria-label="Close menu"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <button
+      id="aboutGthBtn"
+      class="menu-item"
+      type="button"
+    >
+      About GTH
+    </button>
+
+  </aside>
+
+
+  <!-- ========================= -->
+  <!-- EMAIL GATE -->
+  <!-- ========================= -->
+  <div
+    id="emailGate"
+    class="email-gate"
+  >
+
+    <div class="email-sheet">
+
+      <div class="sheet-handle"></div>
+
+      <span class="eyebrow">
+        MQ ACCESS
+      </span>
+
+      <h2>
+        Let GTS know you…
+      </h2>
+
+      <p>
+        Enter your email to continue using MQ.
+      </p>
+
+
+      <form id="emailForm">
+
+        <input
+          type="email"
+          id="emailInput"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        >
+
+        <button
+          type="submit"
+        >
+          Continue
+        </button>
+
+      </form>
+
+
+      <small>
+        Your email is required to access MQ.
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- FIXED BOTTOM TAB -->
+  <!-- ========================= -->
+  <footer class="bottom-tab">
+
+    <strong>
+      GT Softwares
+    </strong>
+
+    <span>
+      A GTH Product
+    </span>
+
+  </footer>
+
+
+  <!-- TOAST -->
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- DATA -->
+  <script src="data/mq-jobs.js"></script>
+  <script src="data/mq-portfolios.js"></script>
+
+  <!-- MAIN APP -->
+  <script src="app.js"></script>
+
+</body>
+</html>
