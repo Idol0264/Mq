@@ -1651,3 +1651,74 @@ main {
 [data-theme="dark"] .category-title {
   background: var(--bg, #111);
 }
+
+/* =========================
+   MQ TALLY EMBED VIEW
+========================= */
+
+.mq-tally-view {
+  position: relative;
+  z-index: 10;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding:
+    calc(var(--top-height) + 15px)
+    10px
+    calc(var(--bottom-height) + 35px);
+}
+
+.mq-tally-header {
+  width: min(1120px, 100%);
+
+  margin: 0 auto 10px;
+
+  padding: 0 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.mq-tally-header strong {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mq-tally-frame {
+  display: block;
+
+  width: 100%;
+
+  height:
+    calc(100vh - var(--top-height) - var(--bottom-height) - 65px);
+
+  height:
+    calc(100dvh - var(--top-height) - var(--bottom-height) - 65px);
+
+  min-height: 520px;
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+
+  background: var(--solid);
+}
+
+@media (max-width: 650px) {
+  .mq-tally-view {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: calc(var(--bottom-height) + 30px);
+  }
+
+  .mq-tally-frame {
+    border-radius: 15px;
+    min-height: 560px;
+  }
+}
