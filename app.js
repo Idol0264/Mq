@@ -1819,15 +1819,19 @@ document
   );
 
 /* =====================================================
-   EMAIL GATE — TALLY
+   EMAIL GATE — TALLY EMBED
    ===================================================== */
 
 const emailGate =
   document.getElementById("emailGate");
 
-const emailInput =
-  document.getElementById("emailInput");
+const EMAIL_TALLY_URL =
+  TALLY_FORMS.EMAIL;
 
+/*
+ * Show the email gate when no email has been
+ * recorded on this device.
+ */
 function openEmailGate() {
 
   if (!emailGate) {
@@ -1836,8 +1840,14 @@ function openEmailGate() {
 
   emailGate.classList.remove("hidden");
 
+  loadEmailTally();
+
 }
 
+/*
+ * Hide the email gate after the Tally form
+ * has been completed.
+ */
 function closeEmailGate() {
 
   if (!emailGate) {
@@ -1849,11 +1859,96 @@ function closeEmailGate() {
 }
 
 /*
- * If this device has already completed the MQ email gate,
- * allow the user into MQ without showing the gate again.
+ * Put the Tally email form inside the MQ gate.
+ *
+ * This expects the email gate in the HTML to contain:
+ *
+ * <div id="emailTallyContainer"></div>
+ *
+ * If it does not exist, the code creates it.
+ */
+function loadEmailTally() {
+
+  if (!emailGate) {
+    return;
+  }
+
+  let container =
+    document.getElementById(
+      "emailTallyContainer"
+    );
+
+  if (!container) {
+
+    container =
+      document.createElement("div");
+
+    container.id =
+      "emailTallyContainer";
+
+    container.style.cssText = `
+      width:100%;
+      max-width:520px;
+      margin:20px auto 0;
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,.04);
+    `;
+
+    emailGate.appendChild(
+      container
+    );
+
+  }
+
+  /*
+   * Do not create the iframe more than once.
+   */
+  if (
+    container.querySelector(
+      "iframe"
+    )
+  ) {
+    return;
+  }
+
+  const iframe =
+    document.createElement("iframe");
+
+  iframe.src =
+    `${EMAIL_TALLY_URL}?hideTitle=1&transparentBackground=1`;
+
+  iframe.title =
+    "MQ Email Registration";
+
+  iframe.loading =
+    "lazy";
+
+  iframe.allow =
+    "fullscreen";
+
+  iframe.style.cssText = `
+    width:100%;
+    min-height:520px;
+    border:0;
+    display:block;
+    background:transparent;
+  `;
+
+  container.appendChild(
+    iframe
+  );
+
+}
+
+/*
+ * Check whether this device has already
+ * completed the MQ email gate.
  */
 const savedEmail =
-  localStorage.getItem(EMAIL_KEY);
+  localStorage.getItem(
+    EMAIL_KEY
+  );
 
 if (savedEmail) {
 
@@ -1866,62 +1961,74 @@ if (savedEmail) {
 }
 
 /*
- * The email gate uses the Tally collection form.
+ * Tally sends postMessage events to the parent
+ * page when an embedded form is submitted.
  *
- * The existing email input is kept only as a fallback
- * if the current HTML still contains it.
+ * When the email form is successfully submitted,
+ * remember that the gate has been completed.
  */
-const emailForm =
-  document.getElementById("emailForm");
+window.addEventListener(
+  "message",
+  event => {
 
-if (emailForm) {
+    if (
+      !event ||
+      !event.data
+    ) {
+      return;
+    }
 
-  emailForm.addEventListener(
-    "submit",
-    event => {
+    let data =
+      event.data;
 
-      event.preventDefault();
+    /*
+     * Tally may send the event as an object
+     * or as a JSON string.
+     */
+    if (
+      typeof data === "string"
+    ) {
 
-      const email =
-        emailInput
-          ? emailInput.value.trim()
-          : "";
+      try {
 
-      if (!email) {
+        data =
+          JSON.parse(data);
 
-        if (emailInput) {
-          emailInput.reportValidity();
-        }
+      } catch {
 
         return;
+
       }
 
-      /*
-       * Open the official MQ email collection form.
-       *
-       * The email is also passed as a hidden-field value.
-       * Your Tally form should have a hidden field named:
-       *
-       * email
-       *
-       * if you want Tally to receive this value automatically.
-       */
-      const tallyUrl =
-        `${TALLY_FORMS.EMAIL}?email=${encodeURIComponent(email)}`;
+    }
 
-      window.open(
-        tallyUrl,
-        "_blank",
-        "noopener,noreferrer"
-      );
+    const eventName =
+      data.event ||
+      data.type ||
+      data.name ||
+      "";
+
+    /*
+     * Tally's submission event.
+     */
+    if (
+      eventName ===
+        "Tally.FormSubmitted" ||
+      eventName ===
+        "formSubmitted"
+    ) {
 
       /*
-       * Remember the email locally so the gate does not
-       * repeatedly appear on this device.
+       * We intentionally do not store the
+       * user's actual email here because the
+       * email is already collected by Tally.
+       *
+       * This flag only remembers that the gate
+       * was completed on this device.
        */
       localStorage.setItem(
         EMAIL_KEY,
-        email
+        "submitted"
       );
 
       closeEmailGate();
@@ -1931,33 +2038,76 @@ if (emailForm) {
       );
 
     }
-  );
 
-}
+  }
+);
 
 /*
- * Allow the user to open the Tally email form directly
- * if an element with this ID exists in the HTML.
+ * Fallback:
+ * If the existing HTML still contains an
+ * email form, prevent the old form from
+ * bypassing the Tally gate.
  */
-const tallyEmailButton =
-  document.getElementById("tallyEmailButton");
+const oldEmailForm =
+  document.getElementById(
+    "emailForm"
+  );
 
-if (tallyEmailButton) {
+if (oldEmailForm) {
 
-  tallyEmailButton.addEventListener(
-    "click",
-    () => {
+  oldEmailForm.addEventListener(
+    "submit",
+    event => {
 
-      window.open(
-        TALLY_FORMS.EMAIL,
-        "_blank",
-        "noopener,noreferrer"
+      event.preventDefault();
+
+      showToast(
+        "Please complete the email form above."
       );
 
     }
   );
 
 }
+
+/*
+ * If an old button named tallyEmailButton
+ * still exists, make it scroll to the
+ * embedded Tally form instead of opening
+ * another browser tab.
+ */
+const tallyEmailButton =
+  document.getElementById(
+    "tallyEmailButton"
+  );
+
+if (tallyEmailButton) {
+
+  tallyEmailButton.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+
+      const container =
+        document.getElementById(
+          "emailTallyContainer"
+        );
+
+      if (container) {
+
+        container.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }
+
+    }
+  );
+
+}
+
 
 /* =====================================================
    TOAST
