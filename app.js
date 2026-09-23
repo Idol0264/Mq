@@ -1819,44 +1819,41 @@ document
   );
 
 /* =====================================================
-   EMAIL GATE
+   EMAIL GATE — TALLY
    ===================================================== */
 
 const emailGate =
-  document.getElementById(
-    "emailGate"
-  );
-
-const emailForm =
-  document.getElementById(
-    "emailForm"
-  );
+  document.getElementById("emailGate");
 
 const emailInput =
-  document.getElementById(
-    "emailInput"
-  );
+  document.getElementById("emailInput");
 
 function openEmailGate() {
 
-  emailGate.classList.remove(
-    "hidden"
-  );
+  if (!emailGate) {
+    return;
+  }
+
+  emailGate.classList.remove("hidden");
 
 }
 
 function closeEmailGate() {
 
-  emailGate.classList.add(
-    "hidden"
-  );
+  if (!emailGate) {
+    return;
+  }
+
+  emailGate.classList.add("hidden");
 
 }
 
+/*
+ * If this device has already completed the MQ email gate,
+ * allow the user into MQ without showing the gate again.
+ */
 const savedEmail =
-  localStorage.getItem(
-    EMAIL_KEY
-  );
+  localStorage.getItem(EMAIL_KEY);
 
 if (savedEmail) {
 
@@ -1868,44 +1865,99 @@ if (savedEmail) {
 
 }
 
-emailForm.addEventListener(
-  "submit",
-  event => {
+/*
+ * The email gate uses the Tally collection form.
+ *
+ * The existing email input is kept only as a fallback
+ * if the current HTML still contains it.
+ */
+const emailForm =
+  document.getElementById("emailForm");
 
-    event.preventDefault();
+if (emailForm) {
 
-    const email =
-      emailInput.value.trim();
+  emailForm.addEventListener(
+    "submit",
+    event => {
 
-    if (!email) {
+      event.preventDefault();
 
-      emailInput.reportValidity();
+      const email =
+        emailInput
+          ? emailInput.value.trim()
+          : "";
 
-      return;
+      if (!email) {
+
+        if (emailInput) {
+          emailInput.reportValidity();
+        }
+
+        return;
+      }
+
+      /*
+       * Open the official MQ email collection form.
+       *
+       * The email is also passed as a hidden-field value.
+       * Your Tally form should have a hidden field named:
+       *
+       * email
+       *
+       * if you want Tally to receive this value automatically.
+       */
+      const tallyUrl =
+        `${TALLY_FORMS.EMAIL}?email=${encodeURIComponent(email)}`;
+
+      window.open(
+        tallyUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+      /*
+       * Remember the email locally so the gate does not
+       * repeatedly appear on this device.
+       */
+      localStorage.setItem(
+        EMAIL_KEY,
+        email
+      );
+
+      closeEmailGate();
+
+      showToast(
+        "Email submitted. Welcome to MQ."
+      );
+
     }
+  );
 
-    /*
-     * Save the email locally so the MQ gate
-     * does not appear again on this device.
-     */
-    localStorage.setItem(
-      EMAIL_KEY,
-      email
-    );
+}
 
-    /*
-     * Continue into MQ immediately.
-     * The actual Tally collection integration
-     * will be connected separately.
-     */
-    closeEmailGate();
+/*
+ * Allow the user to open the Tally email form directly
+ * if an element with this ID exists in the HTML.
+ */
+const tallyEmailButton =
+  document.getElementById("tallyEmailButton");
 
-    showToast(
-      "Welcome to MQ"
-    );
+if (tallyEmailButton) {
 
-  }
-);
+  tallyEmailButton.addEventListener(
+    "click",
+    () => {
+
+      window.open(
+        TALLY_FORMS.EMAIL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+  );
+
+}
 
 /* =====================================================
    TOAST
