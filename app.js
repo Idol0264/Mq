@@ -1940,3 +1940,30 @@ function showToast(
    ===================================================== */
 
 renderAllCategories();
+
+/* =====================================================
+   PWA SERVICE WORKER
+===================================================== */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(() => {
+          console.log("MQ service worker registered.");
+        })
+        .catch(error => {
+          console.error(
+            "MQ service worker registration failed:",
+            error
+          );
+        });
+
+    }
+  );
+
+}
