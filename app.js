@@ -2008,7 +2008,7 @@ document
     () => {
 
       window.open(
-        "https://t.me/gt_softwares",
+        "https://t.me/+0M9jba3fje4yY2I8",
         "_blank",
         "noopener,noreferrer"
       );
