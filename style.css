@@ -1549,6 +1549,7 @@ main {
 
 /* =====================================================
    CATEGORY HEADER
+   Category name centered between the lines
 ===================================================== */
 
 .category-header {
@@ -1556,15 +1557,15 @@ main {
 
   width: 100%;
 
-  min-height: 58px;
+  margin: 28px 0 12px;
+  padding: 0;
 
-  margin: 28px 0 0;
-  padding: 0 0 27px;
+  display: block;
 
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  text-align: center;
 }
+
+/* The horizontal line */
 
 .category-header::before {
   content: "";
@@ -1573,28 +1574,33 @@ main {
 
   left: 0;
   right: 0;
-  top: 15px;
+  top: 50%;
 
   height: 1px;
 
-  background: currentColor;
+  background: var(--line);
 
-  opacity: 0.18;
+  z-index: 0;
 }
+
+/* Category name */
 
 .category-title {
   position: relative;
 
   z-index: 1;
 
+  display: inline-block;
+
   margin: 0;
 
   padding: 0 14px;
 
-  background: var(--bg, #fff);
+  background: var(--bg);
+
+  color: var(--text);
 
   font-size: 13px;
-
   font-weight: 800;
 
   letter-spacing: 1.8px;
@@ -1606,16 +1612,25 @@ main {
 
 /* =====================================================
    SEE MORE
+   Below the category line, aligned right
 ===================================================== */
 
+.category-actions {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  margin: 7px 0 12px;
+
+  padding: 0;
+}
+
 .see-more-btn {
-  position: absolute;
-
-  z-index: 2;
-
-  right: 0;
-  bottom: 0;
-
   display: inline-flex;
 
   align-items: center;
@@ -1623,16 +1638,16 @@ main {
 
   gap: 5px;
 
+  margin: 0;
+  padding: 5px 2px;
+
   border: 0;
 
   background: transparent;
 
-  padding: 5px 2px;
-
-  color: inherit;
+  color: var(--text);
 
   font-size: 11px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -1666,7 +1681,7 @@ main {
 ===================================================== */
 
 [data-theme="dark"] .category-title {
-  background: var(--bg, #111);
+  background: var(--bg);
 }
 
 /* =========================
