@@ -1615,13 +1615,22 @@ main {
 ===================================================== */
 
 .category-actions {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  z-index: 2;
 
-  margin-top: 8px;
-  margin-bottom: 12px;
+  right: 0;
+  top: 50%;
+
+  width: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  transform: translateY(-50%);
 }
 
 .see-more-btn {
