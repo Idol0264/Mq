@@ -1553,93 +1553,78 @@ main {
 
 .category-header {
   position: relative;
+
   width: 100%;
-  height: 30px;
+
+  min-height: 58px;
+
   margin: 28px 0 0;
-  padding: 0;
+  padding: 0 0 27px;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .category-header::before {
   content: "";
+
   position: absolute;
+
   left: 0;
   right: 0;
-  top: 50%;
+  top: 15px;
+
   height: 1px;
+
   background: currentColor;
+
   opacity: 0.18;
 }
 
 .category-title {
   position: relative;
+
   z-index: 1;
 
   margin: 0;
+
   padding: 0 14px;
 
   background: var(--bg, #fff);
 
   font-size: 13px;
+
   font-weight: 800;
+
   letter-spacing: 1.8px;
+
   text-transform: uppercase;
 
   text-align: center;
-}
-
-.category-actions {
-  position: absolute;
-  z-index: 2;
-
-  right: 0;
-  top: 50%;
-
-  width: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0;
-  padding: 0;
-
-  transform: translateY(-50%);
 }
 
 /* =====================================================
    SEE MORE
 ===================================================== */
 
-.category-actions {
+.see-more-btn {
   position: absolute;
+
   z-index: 2;
 
   right: 0;
-  top: 50%;
+  bottom: 0;
 
-  width: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0;
-  padding: 0;
-
-  transform: translateY(-50%);
-}
-
-.see-more-btn {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 5px;
 
   border: 0;
+
   background: transparent;
 
   padding: 5px 2px;
@@ -1647,6 +1632,7 @@ main {
   color: inherit;
 
   font-size: 11px;
+
   font-weight: 700;
 
   cursor: pointer;
@@ -1660,6 +1646,7 @@ main {
 
 .see-more-btn:hover {
   opacity: 1;
+
   transform: translateY(-1px);
 }
 
@@ -1667,11 +1654,10 @@ main {
   transform: scale(0.96);
 }
 
-/* Eye icon */
-
 .see-more-btn svg {
   width: 16px;
   height: 16px;
+
   flex: 0 0 auto;
 }
 
