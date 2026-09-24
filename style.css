@@ -755,46 +755,52 @@ main {
 }
 
 /* =====================================================
-   DISCOVER SCREEN — STICKY HEADER
-   Keeps "GTS GALLERY / Discover Platforms"
-   and the close button visible while scrolling
+   DISCOVER SCREEN — STICKY TOP HEADER
+   GTS GALLERY
+   Discover Platforms
+   Close button
 ===================================================== */
 
 .discover-header {
   position: sticky;
   top: 0;
 
-  z-index: 20;
+  z-index: 100;
 
   width: 100%;
 
   padding: 12px 0 14px;
 
   background:
-    color-mix(in srgb, var(--solid) 94%, transparent);
+    color-mix(in srgb, var(--solid) 96%, transparent);
 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
   border-bottom: 1px solid var(--line);
 }
 
-/* Keep the header contents on one clean row */
+/* Keep the title and close button visible */
 .discover-header .gallery-header {
   margin: 0;
 }
 
-/* Make sure the title remains readable above
-   the scrolling platform cards */
+/* GTS GALLERY */
+.discover-header .eyebrow {
+  margin-bottom: 5px;
+}
+
+/* Discover Platforms */
 .discover-header h2 {
   margin: 0;
 }
 
-/* Keep the close button easy to reach */
+/* Keep × button visible and clickable */
 .discover-header .close-btn {
   flex-shrink: 0;
+  position: relative;
+  z-index: 101;
 }
-
 /* =========================
    DISCOVER
 ========================= */
